@@ -42,6 +42,6 @@ app.get("/dashboard", (req, res)=> {
     res.send("received your request");
 })
 
-app.listen(port, ()=>{
-    console.log("listening on port " + port);
+app.listen(process.env.PORT || port, ()=>{
+    console.log("server is running...");
 })
