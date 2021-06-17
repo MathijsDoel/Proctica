@@ -18,7 +18,7 @@ app.use(bodyParser.urlencoded({ extended: false }))
 
 
 app.post('/login', (req, res) => {
-    console.log(req.ip);
+    console.log(req.socket.remoteAddress);
     const username = req.body.username;
     const password = req.body.password;
     // console.log(username);
