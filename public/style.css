@@ -1,0 +1,147 @@
+
+body{
+    background: linear-gradient(111.34deg, #8FA8FF 0%, #3FAFFF 100%);
+    color: white;
+    overflow-x: hidden;
+    overflow-y: hidden;
+}
+
+#box1{
+    position: absolute;
+    width: 522px;
+    height: 522px;
+    left: -100px;
+    top: 432px;
+    background: radial-gradient(91.57% 91.57% at 8.43% 9.87%, #FFFFFF 0%, rgba(255, 255, 255, 0) 100%);
+    border: 1px solid #FFFFFF;
+    box-sizing: border-box;
+    backdrop-filter: blur(30px);
+    /* Note: backdrop-filter has minimal browser support */
+
+    transform: rotate(18.68deg);
+}
+
+#box2{
+    position: absolute;
+    width: 835.35px;
+    height: 835.35px;
+    left: 922px;
+    top: 76.32px;
+
+    background: radial-gradient(91.57% 91.57% at 8.43% 9.87%, #FFFFFF 0%, rgba(255, 255, 255, 0) 100%);
+    border: 1px solid #FFFFFF;
+    box-sizing: border-box;
+    backdrop-filter: blur(30px);
+    /* Note: backdrop-filter has minimal browser support */
+
+    transform: rotate(-25.1deg);
+}
+
+#box3{
+    position: absolute;
+    width: 522px;
+    height: 522px;
+    left: 271.57px;
+    top: -455px;
+
+    background: radial-gradient(91.57% 91.57% at 8.43% 9.87%, #FFFFFF 0%, rgba(255, 255, 255, 0) 100%);
+    border: 1px solid #FFFFFF;
+    box-sizing: border-box;
+    backdrop-filter: blur(30px);
+    /* Note: backdrop-filter has minimal browser support */
+
+    transform: rotate(65.12deg);
+}
+
+#box4{
+    position: absolute;
+    width: 424px;
+    height: 600px;
+    left: 508px;
+    top: 50px;
+
+    background: white;
+    border-radius: 50px;
+}
+
+#box4 h2{
+    position: relative;
+    width: 310px;
+    height: 70px;
+    left: 50%;
+    margin-left: -155px;
+
+    font-family: 'Open Sans', sans-serif;
+    font-size: 36px;
+    line-height: 45px;
+    text-align: center;
+    color: #000000;
+}
+
+#box4 p{
+    position: relative;
+    width: 288px;
+    height: 33px;
+    left: 30px;
+    top: 20px;
+    
+    font-family: 'Open Sans', sans-serif;
+    font-size: 24px;
+    line-height: 29px;
+    display: flex;
+    align-items: left;
+    
+    color: #000000;    
+}
+
+#box4 svg{
+    position: relative;
+    left: 30px;
+    top: 5px;
+}
+
+#box4 input{
+    width: 70%;
+    height: 30px;
+    position: relative;
+    left: 40px;
+    top: -5px;
+    border: none;
+    /* border-bottom: solid 1px rgba(0, 0, 0, 0.2); */
+    outline:none;
+    background: none;
+}
+
+#box4 hr{
+    width: 90%;
+    height: 1px;
+    background-color: black;
+    margin-top: 10px;
+}
+
+#box4 #loginknop{
+    width: 330px;
+    height: 60px;
+    left: calc(50% - 165px);
+    top: 50px;
+    background: linear-gradient(93.72deg, rgba(255, 122, 122, 0.8) -3.91%, rgba(255, 237, 174, 0.4) 117.37%);
+    border-radius: 30px;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 24px;
+    line-height: 28px;
+}
+
+
+#box4 #loginknop:hover{
+    transition: 0.1s linear;
+    box-shadow: inset 4px 4px 4px rgba(0, 0, 0, 0.25), inset -4px -4px 4px rgba(255, 255, 255, 0.25);
+}
+
+#box4 span{
+    position: relative;
+    color: grey;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 16px;
+    top: 70px;
+    left: 60px;
+}
