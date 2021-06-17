@@ -14,7 +14,7 @@
     <div id="box2"></div>
     <div id="box3"></div>
     <div id="box4">
-        <h2>Login</h2>
+        <h2>Login <%=name%></h2>
         <form action="/login" method="post">
             <p>Gebruikersnaam</p>
             <svg width="37" height="37" viewBox="0 0 37 37" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -34,14 +34,5 @@
         <span>Wachtwoord vergeten?</span>
         </form>
     </div>
-
-    <script>
-        let box1 = document.getElementById("box1");
-        
-        window.addEventListener('mousemove', ()=>{
-            let x = window.clientX;
-            box1.style.left = x + 'px';
-        })
-    </script>
 </body>
 </html>

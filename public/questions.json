@@ -1,0 +1,20 @@
+{
+    "questions": [
+        {
+            "question": "Wat is de indicatie voor een rubberband ligatie?",
+            "answers": ["Aambeien graad 2", "Aambeien graad 3", "Skintags", "Anaal bloedverlies"],
+            "correct": 0
+        },
+        {
+            "question": "Wat is het belangrijkste wat je van de patient wilt weten?",
+            "answers": ["Heeft de patient microlax gebruikt?", "Gebruikt de patient bloedverdunners?", "Welke graad aambeien heeft de patient?", "Heeft de patient deze behandeling eerder gehad?"],
+            "correct": 1
+        },
+        {
+            "question": "Hoe test je de zuigkracht van de zuigpomp?",
+            "answers": ["Je zet de ligator op de handschoen, knijpt het handvat helemaal in en kijkt of de meter oploopt tot 60 KPA.", "Je zet de ligator op de handschoen, knijpt het handvat halverwege in en kijkt of de meter oploopt tot 60 KPA.", "Je zet de ligator op de handschoen, knijpt het handvat helemaal in en kijkt of de meter oploopt tot 40 KPA.", "Je zet de ligator op de handschoen, knijpt het handvat halverwege in en kijkt of de meter oploopt tot 40 KPA."],
+            "correct": 1
+        }
+
+    ]
+}
