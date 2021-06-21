@@ -13,10 +13,13 @@
     <div id="box">
         <h1><%=main_question%></h1>
         <ul>
-            <li><a href="#">a: <%=a%></a></li>
-            <li><a href="#">b: <%=b%></a></li>
-            <li><a href="#">c: <%=c%></a></li>
-            <li><a href="#">d: <%=d%></a></li>
+            <form action="/quiz/<%=index%>"  method="post">
+                <li><button type="submit" name="value" value=0>a: <%=a%></button></li>
+                <li><button type="submit" name="value" value=1>b: <%=b%></button></li>
+                <li><button type="submit" name="value" value=2>c: <%=c%></button></li>
+                <li><button type="submit" name="value" value=3>d: <%=d%></button></li>
+                <li><button type="submit" name="value" value=4>e: <%=e%></button></li>
+            </form> 
         </ul>
     </div>
     <a class="skip-button" id="previous" href=<%=previous%>>Vorige</a>
@@ -25,7 +28,7 @@
         let next_button = document.getElementById("next");
         let previous_button = document.getElementById("previous");
         let index = <%=next%> - 1;
-        if(index >= 2){
+        if(index >= <%=total_questions%>-1){
             next_button.style.visibility = "hidden";
         }
         if(index <= 0){

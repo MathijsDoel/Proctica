@@ -34,13 +34,15 @@ ul li{
     margin-top: 7vh;
 }
 
-#box a{
+#box button{
     font-size: 120%;
     background-color: rgba(0, 0, 0, 0.1);
     padding: 0.8vw;
     border-radius: 1em;
+    cursor: pointer;
+    border: none;
 }
-#box a:hover{
+#box button:hover{
     background-color: rgba(161, 182, 255, 0.5);
     transition: 0.1s linear;
 }

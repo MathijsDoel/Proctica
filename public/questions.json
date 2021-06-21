@@ -14,7 +14,23 @@
             "question": "Hoe test je de zuigkracht van de zuigpomp?",
             "answers": ["Je zet de ligator op de handschoen, knijpt het handvat helemaal in en kijkt of de meter oploopt tot 60 KPA.", "Je zet de ligator op de handschoen, knijpt het handvat halverwege in en kijkt of de meter oploopt tot 60 KPA.", "Je zet de ligator op de handschoen, knijpt het handvat helemaal in en kijkt of de meter oploopt tot 40 KPA.", "Je zet de ligator op de handschoen, knijpt het handvat halverwege in en kijkt of de meter oploopt tot 40 KPA."],
             "correct": 1
+        },
+        {
+            "question": "Hoe ruim je het materiaal op?",
+            "answers": ["De ligator wordt hergebruikt, de rest mag in de prullenbak.", "De zuigslang en de ligator worden hergebruikt, de rest mag in de prullenbak.", "Alleen de bluscope wordt hergebruikt, de rest mag in de prullenbak.", "Alle onderdelen worden in de prullenbak gegooid."],
+            "correct": 3
+        },
+        {
+            "question": "Wat moet de patient thuis hebben gedaan?",
+            "answers": ["Microlax gebruikt.", "Paracetamol ingenomen.", "Ibuprofen ingenomen.", "Alle antwoorden zijn juist.", "Alleen antwoord a en b zijn juist."],
+            "correct": 4
+        },
+        {
+            "question": "Welke hemorroïden zijn vaak pijnlijk?",
+            "answers": ["Inwendige hemorroïden", "Inwendige hemorroïden"],
+            "correct": 0
         }
-
+        
+        
     ]
 }
