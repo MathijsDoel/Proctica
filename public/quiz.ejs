@@ -14,11 +14,10 @@
         <h1><%=main_question%></h1>
         <ul>
             <form action="/quiz/<%=index%>"  method="post">
-                <li><button type="submit" name="value" value=0>a: <%=a%></button></li>
-                <li><button type="submit" name="value" value=1>b: <%=b%></button></li>
-                <li><button type="submit" name="value" value=2>c: <%=c%></button></li>
-                <li><button type="submit" name="value" value=3>d: <%=d%></button></li>
-                <li><button type="submit" name="value" value=4>e: <%=e%></button></li>
+                <% let abcde = ['a', 'b', 'c', 'd', 'e']; %>
+                <% for (var i =0; i < answers.length;  i++ ) { %>
+                    <li><button type="submit" name="value" value=<%=i%>><%=abcde[i]%>: <%=answers[i]%></button></li>
+                <% } %>
             </form> 
         </ul>
     </div>

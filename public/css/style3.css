@@ -1,0 +1,664 @@
+* {
+    box-sizing: border-box;
+  }
+  body {
+    font-size: 14px;
+  }
+  .v3_107 {
+    width: 100%;
+    height: 1024px;
+    opacity: 1;
+    position: relative;
+    top: 0px;
+    left: 0px;
+    overflow: hidden;
+  }
+  .v3_108 {
+    width: 436px;
+    height: 86px;
+    position: absolute;
+  background: url("https://proctoskliniek.nl/wp-content/uploads/2021/04/253_MartinHogeboom_16-02-21-1-Danielle-van-Reijn-150x150.jpg");
+  border-radius: 40px 40px 0px 0px;
+    background: rgba(255,255,255,0);
+    opacity: 1;
+    position: absolute;
+    top: 628px;
+    left: 500px;
+  }
+  .v3_138 {
+    width: 454px;
+    color: black;
+    position: absolute;
+    top: 163px;
+    left: 671px;
+    font-family: Poppins;
+    font-weight: Regular;
+    font-size: 32px;
+    opacity: 1;
+    text-align: left;
+  }
+  .v3_137 {
+    width: 454px;
+    color: black;
+    position: absolute;
+    top: 272px;
+    left: 108px;
+    font-family: Poppins;
+    font-weight: Regular;
+    font-size: 32px;
+    opacity: 1;
+    text-align: left;
+  }
+  .v3_139 {
+    width: 454px;
+    color: black;
+    position: absolute;
+    top: 272px;
+    left: 792px;
+    font-family: Poppins;
+    font-weight: Regular;
+    font-size: 32px;
+    opacity: 1;
+    text-align: left;
+  }
+  .v3_124 {
+    width: 479px;
+    height: 109px;
+    background: none;
+    opacity: 1;
+    position: absolute;
+    top: 28px;
+    left: 989px;
+    border-top-left-radius: 32px;
+    border-top-right-radius: 32px;
+    border-bottom-left-radius: 32px;
+    border-bottom-right-radius: 32px;
+    overflow: hidden;
+  }
+  .v3_125 {
+    width: 136px;
+    color: rgba(91,91,91,1);
+    position: absolute;
+    top: 12px;
+    left: 1025px;
+    font-family: Poppins;
+    font-weight: Regular;
+    font-size: 32px;
+    opacity: 1;
+    text-align: left;
+  }
+  .v3_134 {
+    width: 136px;
+    color: rgba(91,91,91,1);
+    position: absolute;
+    top: 12px;
+    left: 1161px;
+    font-family: Poppins;
+    font-weight: Regular;
+    font-size: 32px;
+    opacity: 1;
+    text-align: left;
+  }
+  .v3_135 {
+    width: 136px;
+    color: rgba(91,91,91,1);
+    position: absolute;
+    top: 12px;
+    left: 1283px;
+    font-family: Poppins;
+    font-weight: Regular;
+    font-size: 32px;
+    opacity: 1;
+    text-align: left;
+  }
+  .v3_225 {
+    width: 436px;
+    height: 86px;
+    background: rgba(255,255,255,0);
+    opacity: 1;
+    position: absolute;
+    top: 610px;
+    left: 541px;
+  }
+  .v3_226 {
+    width: 268px;
+    height: 127px;
+    background: url("https://amstelzijdekliniek.nl/cms/wp-content/uploads/2019/12/botoxbehandeling-mannen-amstelzijde-kliniek.jpg");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    opacity: 1;
+    position: absolute;
+    top: 367px;
+    left: 108px;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    overflow: hidden;
+  }
+  .v3_227 {
+    width: 268px;
+    height: 94px;
+    background: rgba(245,245,247,1);
+    opacity: 1;
+    position: absolute;
+    top: 494px;
+    left: 108px;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    overflow: hidden;
+  }
+  .v3_228 {
+    width: 260px;
+    color: rgba(0,0,0,1);
+    position: absolute;
+    top: 513px;
+    left: 120px;
+    font-family: Poppins;
+    font-weight: Regular;
+    font-size: 25px;
+    opacity: 1;
+    text-align: left;
+  }
+  .v3_229 {
+    width: 197px;
+    height: 7px;
+    background: rgba(196,196,196,0.4699999988079071);
+    opacity: 1;
+    position: absolute;
+    top: 567px;
+    left: 143px;
+    border-top-left-radius: 37px;
+    border-top-right-radius: 37px;
+    border-bottom-left-radius: 37px;
+    border-bottom-right-radius: 37px;
+    overflow: hidden;
+  }
+  .v3_230 {
+    width: 97px;
+    height: 7px;
+    background: rgba(109,120,175,1);
+    opacity: 1;
+    position: absolute;
+    top: 567px;
+    left: 143px;
+    border-top-left-radius: 37px;
+    border-top-right-radius: 37px;
+    border-bottom-left-radius: 37px;
+    border-bottom-right-radius: 37px;
+    overflow: hidden;
+  }
+  .v3_231 {
+    width: 74px;
+    color: rgba(0,0,0,1);
+    position: absolute;
+    top: 545px;
+    left: 228px;
+    font-family: Poppins;
+    font-weight: Regular;
+    font-size: 13px;
+    opacity: 1;
+    text-align: left;
+  }
+  .v3_232 {
+    width: 268px;
+    height: 127px;
+    background: url("https://www.ntvg.nl/sites/default/files/migrated/a787_f2.jpg");
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: cover;
+    opacity: 1;
+    position: absolute;
+    top: 638px;
+    left: 114px;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    overflow: hidden;
+  }
+  .v3_233 {
+    width: 268px;
+    height: 94px;
+    background: rgba(245,245,247,1);
+    opacity: 1;
+    position: absolute;
+    top: 765px;
+    left: 114px;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    overflow: hidden;
+  }
+  .v3_234 {
+    width: 260px;
+    color: rgba(0,0,0,1);
+    position: absolute;
+    top: 784px;
+    left: 126px;
+    font-family: Poppins;
+    font-weight: Regular;
+    font-size: 25px;
+    opacity: 1;
+    text-align: left;
+  }
+  .v3_235 {
+    width: 197px;
+    height: 7px;
+    background: rgba(196,196,196,0.4699999988079071);
+    opacity: 1;
+    position: absolute;
+    top: 838px;
+    left: 149px;
+    border-top-left-radius: 37px;
+    border-top-right-radius: 37px;
+    border-bottom-left-radius: 37px;
+    border-bottom-right-radius: 37px;
+    overflow: hidden;
+  }
+  .v3_236 {
+    width: 6px;
+    height: 7px;
+    background: rgba(109,120,175,1);
+    opacity: 1;
+    position: absolute;
+    top: 838px;
+    left: 149px;
+    border-top-left-radius: 37px;
+    border-top-right-radius: 37px;
+    border-bottom-left-radius: 37px;
+    border-bottom-right-radius: 37px;
+    overflow: hidden;
+  }
+  .v3_237 {
+    width: 74px;
+    color: rgba(0,0,0,1);
+    position: absolute;
+    top: 816px;
+    left: 234px;
+    font-family: Poppins;
+    font-weight: Regular;
+    font-size: 13px;
+    opacity: 1;
+    text-align: left;
+  }
+  .v3_238 {
+    width: 268px;
+    height: 127px;
+    background: url("https://huidarts.com/wp-content/uploads/2015/06/rubber-band-ligation.jpg"); /*RBL*/
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: cover;
+    opacity: 1;
+    position: absolute;
+    top: 638px;
+    left: 451px;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    overflow: hidden;
+  }
+  .v3_239 {
+    width: 268px;
+    height: 94px;
+    background: rgba(245,245,247,1);
+    opacity: 1;
+    position: absolute;
+    top: 765px;
+    left: 451px;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    overflow: hidden;
+  }
+  .v3_240 {
+    width: 260px;
+    color: rgba(0,0,0,1);
+    position: absolute;
+    top: 784px;
+    left: 463px;
+    font-family: Poppins;
+    font-weight: Regular;
+    font-size: 25px;
+    opacity: 1;
+    text-align: left;
+  }
+  .v3_241 {
+    width: 197px;
+    height: 7px;
+    background: rgba(196,196,196,0.4699999988079071);
+    opacity: 1;
+    position: absolute;
+    top: 838px;
+    left: 486px;
+    border-top-left-radius: 37px;
+    border-top-right-radius: 37px;
+    border-bottom-left-radius: 37px;
+    border-bottom-right-radius: 37px;
+    overflow: hidden;
+  }
+  .v3_242 {
+    width: 97px;
+    height: 7px;
+    background: rgba(109,120,175,1);
+    opacity: 1;
+    position: absolute;
+    top: 838px;
+    left: 486px;
+    border-top-left-radius: 37px;
+    border-top-right-radius: 37px;
+    border-bottom-left-radius: 37px;
+    border-bottom-right-radius: 37px;
+    overflow: hidden;
+  }
+  .v3_243 {
+    width: 74px;
+    color: rgba(0,0,0,1);
+    position: absolute;
+    top: 816px;
+    left: 571px;
+    font-family: Poppins;
+    font-weight: Regular;
+    font-size: 13px;
+    opacity: 1;
+    text-align: left;
+  }
+  .v3_244 {
+    width: 268px;
+    height: 127px;
+    background: url("../images/v3_244.png");
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: cover;
+    opacity: 1;
+    position: absolute;
+    top: 367px;
+    left: 451px;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    overflow: hidden;
+  }
+  .v3_245 {
+    width: 268px;
+    height: 94px;
+    background: rgba(245,245,247,1);
+    opacity: 1;
+    position: absolute;
+    top: 494px;
+    left: 451px;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    overflow: hidden;
+  }
+  .v3_246 {
+    width: 260px;
+    color: rgba(0,0,0,1);
+    position: absolute;
+    top: 513px;
+    left: 463px;
+    font-family: Poppins;
+    font-weight: Regular;
+    font-size: 25px;
+    opacity: 1;
+    text-align: left;
+  }
+  .v3_247 {
+    width: 197px;
+    height: 7px;
+    background: rgba(196,196,196,0.4699999988079071);
+    opacity: 1;
+    position: absolute;
+    top: 567px;
+    left: 486px;
+    border-top-left-radius: 37px;
+    border-top-right-radius: 37px;
+    border-bottom-left-radius: 37px;
+    border-bottom-right-radius: 37px;
+    overflow: hidden;
+  }
+  .v3_248 {
+    width: 141px;
+    height: 7px;
+    background: rgba(109,120,175,1);
+    opacity: 1;
+    position: absolute;
+    top: 567px;
+    left: 486px;
+    border-top-left-radius: 37px;
+    border-top-right-radius: 37px;
+    border-bottom-left-radius: 37px;
+    border-bottom-right-radius: 37px;
+    overflow: hidden;
+  }
+  .v3_249 {
+    width: 74px;
+    color: rgba(0,0,0,1);
+    position: absolute;
+    top: 545px;
+    left: 571px;
+    font-family: Poppins;
+    font-weight: Regular;
+    font-size: 13px;
+    opacity: 1;
+    text-align: left;
+  }
+  .v3_250 {
+    width: 268px;
+    height: 127px;
+    background: url("https://www.premed.nl/media/cache/jpg/2d/tens-ems-en-massage-3-in-1-apparaat-rc4d.x800.jpg"); /* TENS */
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: cover;
+    opacity: 1;
+    position: absolute;
+    top: 370px;
+    left: 792px;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    overflow: hidden;
+  }
+  .v3_251 {
+    width: 268px;
+    height: 94px;
+    background: rgba(245,245,247,1);
+    opacity: 1;
+    position: absolute;
+    top: 497px;
+    left: 792px;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    overflow: hidden;
+  }
+  .v3_252 {
+    width: 260px;
+    color: rgba(0,0,0,1);
+    position: absolute;
+    top: 516px;
+    left: 804px;
+    font-family: Poppins;
+    font-weight: Regular;
+    font-size: 25px;
+    opacity: 1;
+    text-align: left;
+  }
+  .v3_253 {
+    width: 197px;
+    height: 7px;
+    background: rgba(196,196,196,0.4699999988079071);
+    opacity: 1;
+    position: absolute;
+    top: 570px;
+    left: 827px;
+    border-top-left-radius: 37px;
+    border-top-right-radius: 37px;
+    border-bottom-left-radius: 37px;
+    border-bottom-right-radius: 37px;
+    overflow: hidden;
+  }
+  .v3_254 {
+    width: 197px;
+    height: 7px;
+    background: rgba(110,120,175,1);
+    opacity: 1;
+    position: absolute;
+    top: 570px;
+    left: 827px;
+    border-top-left-radius: 37px;
+    border-top-right-radius: 37px;
+    border-bottom-left-radius: 37px;
+    border-bottom-right-radius: 37px;
+    overflow: hidden;
+  }
+  .v3_255 {
+    width: 268px;
+    height: 127px;
+    background: url("../images/v3_255.png");
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: cover;
+    opacity: 1;
+    position: absolute;
+    top: 935px;
+    left: 454px;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    overflow: hidden;
+  }
+  .v3_256 {
+    width: 268px;
+    height: 94px;
+    background: rgba(245,245,247,1);
+    opacity: 1;
+    position: absolute;
+    top: 1062px;
+    left: 454px;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    overflow: hidden;
+  }
+  .v3_257 {
+    width: 260px;
+    color: rgba(0,0,0,1);
+    position: absolute;
+    top: 1081px;
+    left: 466px;
+    font-family: Poppins;
+    font-weight: Regular;
+    font-size: 25px;
+    opacity: 1;
+    text-align: left;
+  }
+  .v3_258 {
+    width: 197px;
+    height: 7px;
+    background: rgba(196,196,196,0.4699999988079071);
+    opacity: 1;
+    position: absolute;
+    top: 1135px;
+    left: 489px;
+    border-top-left-radius: 37px;
+    border-top-right-radius: 37px;
+    border-bottom-left-radius: 37px;
+    border-bottom-right-radius: 37px;
+    overflow: hidden;
+  }
+  .v3_259 {
+    width: 97px;
+    height: 7px;
+    background: rgba(109,120,175,1);
+    opacity: 1;
+    position: absolute;
+    top: 1135px;
+    left: 489px;
+    border-top-left-radius: 37px;
+    border-top-right-radius: 37px;
+    border-bottom-left-radius: 37px;
+    border-bottom-right-radius: 37px;
+    overflow: hidden;
+  }
+  .v3_260 {
+    width: 74px;
+    color: rgba(0,0,0,1);
+    position: absolute;
+    top: 1113px;
+    left: 574px;
+    font-family: Poppins;
+    font-weight: Regular;
+    font-size: 13px;
+    opacity: 1;
+    text-align: left;
+  }
+  .v3_261 {
+    width: 268px;
+    height: 127px;
+    background: url("../images/v3_261.png");
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: cover;
+    opacity: 1;
+    position: absolute;
+    top: 935px;
+    left: 118px;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    overflow: hidden;
+  }
+  .v3_262 {
+    width: 268px;
+    height: 94px;
+    background: rgba(245,245,247,1);
+    opacity: 1;
+    position: absolute;
+    top: 1062px;
+    left: 118px;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    overflow: hidden;
+  }
+  .v3_263 {
+    width: 260px;
+    color: rgba(0,0,0,1);
+    position: absolute;
+    top: 1081px;
+    left: 130px;
+    font-family: Poppins;
+    font-weight: Regular;
+    font-size: 25px;
+    opacity: 1;
+    text-align: left;
+  }
+  .v3_264 {
+    width: 197px;
+    height: 7px;
+    background: rgba(196,196,196,0.4699999988079071);
+    opacity: 1;
+    position: absolute;
+    top: 1135px;
+    left: 153px;
+    border-top-left-radius: 37px;
+    border-top-right-radius: 37px;
+    border-bottom-left-radius: 37px;
+    border-bottom-right-radius: 37px;
+    overflow: hidden;
+  }
+  .v3_265 {
+    width: 97px;
+    height: 7px;
+    background: rgba(109,120,175,1);
+    opacity: 1;
+    position: absolute;
+    top: 1135px;
+    left: 153px;
+    border-top-left-radius: 37px;
+    border-top-right-radius: 37px;
+    border-bottom-left-radius: 37px;
+    border-bottom-right-radius: 37px;
+    overflow: hidden;
+  }
+  .v3_266 {
+    width: 74px;
+    color: rgba(0,0,0,1);
+    position: absolute;
+    top: 1113px;
+    left: 238px;
+    font-family: Poppins;
+    font-weight: Regular;
+    font-size: 13px;
+    opacity: 1;
+    text-align: left;
+  }
+  .name {
+    color: #fff;
+  }
+  .v3_269 {
+    width: 74px;
+    color: rgba(0,0,0,1);
+    position: absolute;
+    top: 546px;
+    left: 915px;
+    font-family: Poppins;
+    font-weight: Regular;
+    font-size: 13px;
+    opacity: 1;
+    text-align: left;
+  }

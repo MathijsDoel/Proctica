@@ -13,7 +13,7 @@ let loggedIn = [];
 // {"username": "", "IP": ""}
 
 app.get("/", (req, res)=> {
-    res.render(__dirname + "/public/index.ejs", {name: "mattydoel"});
+    res.render(__dirname + "/public/index.ejs", {error: ""});
 })
 
 app.use(bodyParser.urlencoded({ extended: false }))
@@ -37,7 +37,7 @@ app.post('/login', (req, res) => {
             break;
         }
         else if(i == users.length - 1){
-            console.log("no corresponding user found");
+            res.render(__dirname + "/public/index.ejs", {error:"gebruikersnaam of wachtwoord was incorrect"});
         }
     }
   });
@@ -72,7 +72,8 @@ app.get("/quiz/:index", (req, res)=>{
         let next_index = index + 1;
         let previous_index = index - 1;
         let total_questions = data.length;
-        res.render(__dirname + "/quiz.ejs", {main_question: data[index]["question"], a:data[index]["answers"][0], b:data[index]["answers"][1], c:data[index]["answers"][2], d:data[index]["answers"][3], e:data[index]["answers"][4], next:next_index, previous:previous_index, total_questions:total_questions, index:index});
+        let answers = data[index]["answers"];
+        res.render(__dirname + "/public/quiz.ejs", {main_question: data[index]["question"], next:next_index, previous:previous_index, total_questions:total_questions, index:index, answers:answers});
     }
 })
 

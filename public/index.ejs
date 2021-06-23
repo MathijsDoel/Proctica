@@ -5,14 +5,11 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login</title>
-    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/style2.css">
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&display=swap" rel="stylesheet">
 </head>
 <body>
-    <div id="box1"></div>
-    <div id="box2"></div>
-    <div id="box3"></div>
     <div id="box4">
         <h2>Login</h2>
         <form action="/login" method="post">
@@ -31,7 +28,7 @@
             <input type="password" name="password" id="Wachtwoord" placeholder="Type hier uw wachtwoord">
             <hr> 
             <input type="submit" value="Login" id="loginknop">
-        <span>Wachtwoord vergeten?</span>
+        <span><%=error%></span>
         </form>
     </div>
 </body>
