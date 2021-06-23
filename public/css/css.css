@@ -1,5 +1,5 @@
 html {
-  
+  overflow-y: hidden;
     overflow-x: hidden;
 }
 
@@ -240,8 +240,8 @@ text-decoration:  none;
 }
 .img1{
   position: absolute;
-width: 200px;
-height: 450px;
+width: 180px;
+height: 405px;
 left: 60%;
 top: 35%;
 background: url(https://proctoskliniek.nl/wp-content/themes/understrap-child/inc/media/home/home-img-1.jpg);
@@ -274,9 +274,9 @@ animation-fill-mode:forwards;
 
 .img2{
   position: absolute;
-width: 200px;
-height: 450px;
-left: 70%;
+width: 180px;
+height: 405px;
+left: 69%;
 top: 27%;
 background: url(https://images.solvo.nl/_upload/practice/4387/images/Proctos_Kliniek_-6661.jpg?crop=0,1194.6763636363637,5616,3604.450909090909&mode=crop&w=750&h=400&scale=both);
 background-position: center;
@@ -307,9 +307,9 @@ animation-fill-mode:forwards;
 
 .img3{
   position: absolute;
-width: 200px;
-height: 450px;
-left: 80%;
+width: 180px;
+height: 405px;
+left: 78%;
 top: 35%;
 background: url(https://proctoskliniek.nl/wp-content/uploads/2021/03/pk1.jpg);
 background-position: center;
@@ -468,15 +468,15 @@ animation-fill-mode:forwards;
 
 .footer {  
   background-color: white;  
-  position: absolute;  
+  position: relative;  
   left: 0;  
   right: 0;  
-  top: 100%;  
+  top: 73%;  
   width: 100%;
   height: 100px;  
   display: flex;  
   align-items: center;  
-  box-shadow: 0 0 25px 0 black;  
+  
   }  
  
 .footer * {  
@@ -488,14 +488,14 @@ animation-fill-mode:forwards;
   }  
 
 .footer p{  
-    color: grey;  
+    color: rgb(165, 165, 165);  
     text-decoration: none;  
     font-family: quicksand;
     font-weight: bold;
 
     }  
 .footer li a {  
-  color: grey;  
+  color: rgb(165, 165, 165);  
   font-family: quicksand;
   font-weight: bold;
   text-decoration: none;  
