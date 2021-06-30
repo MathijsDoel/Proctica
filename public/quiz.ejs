@@ -13,7 +13,7 @@
     <div id="box">
         <h1><%=main_question%></h1>
         <ul>
-            <form action="/quiz/<%=index%>"  method="post">
+            <form action="?"  method="post">
                 <% let abcde = ['a', 'b', 'c', 'd', 'e']; %>
                 <% for (var i =0; i < answers.length;  i++ ) { %>
                     <li><button type="submit" name="value" value=<%=i%>><%=abcde[i]%>: <%=answers[i]%></button></li>

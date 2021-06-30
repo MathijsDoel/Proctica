@@ -43,14 +43,16 @@ app.post('/login', (req, res) => {
   });
 
 app.get("/dashboard", (req, res)=> {
-    console.log(loggedIn);
     if(loggedIn.length == 0){
         res.redirect("/")
     }
     else{
         for(let i = 0;i<loggedIn.length;i++){
             if(req.socket.remoteAddress == loggedIn[i]["IP"]){
-                res.render(__dirname + "/public/dashboard.ejs");
+                let rawdata = fs.readFileSync('courses-info.json');
+                let data = JSON.parse(rawdata);
+                let courses = data["courses"];
+                res.render(__dirname + "/public/dashboard.ejs", {courses: courses});
                 break;
             }
             else if(i == loggedIn.length - 1){
@@ -60,11 +62,12 @@ app.get("/dashboard", (req, res)=> {
     }
 })
 
-app.get("/quiz/:index", (req, res)=>{
+app.get("/quiz/:course/:index", (req, res)=>{
+    let course = parseInt(req.params.course);
     let index = parseInt(req.params.index);
     let rawdata = fs.readFileSync('public/questions.json');
     let temp_data = JSON.parse(rawdata);
-    let data = temp_data["questions"];
+    let data = temp_data["course" + course];
     if(index >= data.length){
         res.send("question not found");
     }
@@ -77,7 +80,8 @@ app.get("/quiz/:index", (req, res)=>{
     }
 })
 
-app.post("/quiz/:index", (req, res)=>{
+app.post("/quiz/:course/:index", (req, res)=>{
+    let course_index = parseInt(req.params.course);
     let index = parseInt(req.params.index);
     let index_str = req.params.index;
     let answers = [];
@@ -94,7 +98,8 @@ app.post("/quiz/:index", (req, res)=>{
         }
     }
     let user_info = users[user];
-    let course = user_info["course1"];
+    let course = user_info["course" + course_index]["questions"];
+    console.log(user_info["course" + course_index]);
     if(course.length == 0){
         course.push({"question": index_str, "answer": value});
     }
@@ -109,11 +114,11 @@ app.post("/quiz/:index", (req, res)=>{
             }
         }
     }
-    data["users"][user]["course1"] = course;
+    data["users"][user]["course" + course_index]["questions"] = course;
     let json_data = JSON.stringify(data, null, 2);
     fs.writeFileSync("courses-results.json", json_data);
 
-    res.redirect("/quiz/" + index);
+    res.redirect("/quiz/" + course_index + "/" + index);
 });
 
 app.get("/results/:index", (req, res)=>{

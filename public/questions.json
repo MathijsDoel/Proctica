@@ -1,5 +1,5 @@
 {
-    "questions": [
+    "course1": [
         {
             "question": "Wat is de indicatie voor een rubberband ligatie?",
             "answers": ["Aambeien graad 2", "Aambeien graad 3", "Skintags", "Anaal bloedverlies"],
@@ -29,8 +29,38 @@
             "question": "Welke hemorroïden zijn vaak pijnlijk?",
             "answers": ["Inwendige hemorroïden", "Inwendige hemorroïden"],
             "correct": 0
-        }
-        
-        
+        }  
+    ],
+    "course2": [
+        {
+            "question": "Wie is het beste overwatch karakter?",
+            "answers": ["Wrecking ball", "Zarya", "Hamster", "Pot"],
+            "correct": 2
+        },
+        {
+            "question": "Met welk karakter kan je altijd een 1v1 van JB winnen?",
+            "answers": ["Wrecking ball?", "Mercy", "Mercy", "Geen van bovenstaande"],
+            "correct": 3
+        },
+        {
+            "question": "Wie zuigt het meeste?",
+            "answers": ["ktp-05", "sansebastiaan", "Maupicolt", "mattydoel"],
+            "correct": 3
+        },
+        {
+            "question": "Wat is de meest vervloekte map?",
+            "answers": ["Lettuce land", "Pickle playground", "Ayutheia", "Tomato town"],
+            "correct": 3
+        },
+        {
+            "question": "Wie is Monke?",
+            "answers": ["Wrecking ball", "Hamster", "Cavia", "Winston"],
+            "correct": 3
+        },
+        {
+            "question": "Waar of niet waar? Ktp-05 is level 25",
+            "answers": ["Waar", "Niet waar"],
+            "correct": 1
+        }  
     ]
 }

@@ -1,0 +1,23 @@
+{
+    "courses": [
+        {
+            "id": 1,
+            "name": "Botox behandeling",
+            "info": "De leukste behandeling die proctos te bieden heeft. Laat je 10 jaar jonger lijken.",
+            "img": "https://www.artdelabeaute.nl/wp-content/uploads/2020/03/risico-botox-behandeling-kraaienpootjes-1000x430.jpg"
+        },
+        {
+            "id": 2,
+            "name": "Aambeien verwijderen",
+            "info": "Last van aanbeien? Zometeen niet meer! Zonder gedoe aambeien laten verwijderen is nog nooit zo mekkelijk geweest",
+            "img": "https://www.kruidvat.nl/blog/wp-content/uploads/2019/11/aambei-illustratie.jpg"
+        },
+        {
+            "id": 3,
+            "name": "Anale jeuk kriebelen",
+            "info": "In het geval van anale jeuk kunnen onze professionals je anus lichtelijk kriebelen om de jeuk te verminderen",
+            "img": "https://phabcart.imgix.net/cdn/scdn/images/uploads/economy-powder-free-latex-gloves_56693.jpg?auto=compress"
+        }
+    ]
+    
+}

@@ -9,10 +9,11 @@ body{
 
 #box4{
     position: absolute;
-    width: 32%;
-    height: 40%;
-    left: 40%;
-    top: 25%;
+    width: 400px;
+    height: 80vh;
+    left: 50%;
+    top: 50vh;
+    transform: translate(-50%, -50%);
     background: white;
     border-radius: 50px;
 }
@@ -24,6 +25,7 @@ body{
     left: 50%;
     margin-left: -155px;
 
+    
     font-family: 'Open Sans', sans-serif;
     font-size: 36px;
     line-height: 45px;
@@ -100,16 +102,11 @@ border-radius: 7px;
     left: 60px;
 }
 
-.img{
-  position: absolute;
-  top: -10%;
-  left: 33%;
-  width: 40%;
-  height: 40%;
-  background: url(https://proctoskliniek.nl/wp-content/uploads/2021/04/logo-header.png);
-  background-repeat: no-repeat;
-  background-size: 250px;
-  background-position: center;
+@media only screen and (max-width: 400px) {
+  #box4{
+      width: 100%;
+      height: 100%;
+      
 }
 
 ::-webkit-input-placeholder { /* Chrome/Opera/Safari */
