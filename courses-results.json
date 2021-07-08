@@ -1,15 +1,40 @@
 {
   "users": {
     "mattydoel": {
-      "course1": {
-        "questions": [],
-        "complete": false
-      },
       "course2": {
         "questions": [
           {
             "question": "0",
+            "answer": "1"
+          },
+          {
+            "question": "1",
+            "answer": "3"
+          },
+          {
+            "question": "2",
+            "answer": "1"
+          },
+          {
+            "question": "3",
+            "answer": "2"
+          },
+          {
+            "question": "4",
+            "answer": "3"
+          },
+          {
+            "question": "5",
             "answer": "0"
+          }
+        ],
+        "complete": false
+      },
+      "course1": {
+        "questions": [
+          {
+            "question": "0",
+            "answer": "3"
           },
           {
             "question": "1",

@@ -10,19 +10,39 @@ body{
     font-family: 'Open Sans', sans-serif;
 }
 
+.titel{
+    width: 300px;
+    height: 200px;
+    position: absolute;
+    left: 12vw;
+    top: -50px;
+
+}
+.titel h4{
+    font-size: 2em;
+    font-family: 'Poppins', sans-serif;
+    margin-top: 100px;
+}
+.titel p{
+    color: grey;
+    font-size: 1em;
+    font-weight: bold;
+    font-family: 'Poppins', sans-serif;
+}
+
 a{
     color: black;
     text-decoration: none;
 }
 
 #sidebox{
-    background-color: #56557D;
+    background: linear-gradient(128.47deg, rgba(111,82,237, 0.49) 33.29%, rgba(86, 85, 125, 0.3) 103.28%);
     width: 100px;
-    height: 1000px;
+    height: 2000px;
 }
 
 #profile-picture{
-    background-image: url("https://pbs.twimg.com/media/ExlB7AjW8AITBRY.jpg");
+    background-image: url("https://proctoskliniek.nl/wp-content/uploads/2021/04/253_MartinHogeboom_16-02-21-1-Danielle-van-Reijn-150x150.jpg");
     background-position: center;
     background-size: 80px 80px;
     background-color: darkgrey;
@@ -41,14 +61,13 @@ a{
 }
 
 #gemiddeld{
-    width: 320px;
-    height: 170px;
+    width: 360px;
+    height: 130px;
     border-radius: 25px;
     background-color: white;
     position: absolute;
-    left: 15vw;
-    top: 50px;
-    border: solid rgba(0, 0, 0, 0.2) 1px;
+    left: 13vw;
+    top: 190px;
 }
 
 #gemiddeld #gemiddeld-back{
@@ -56,33 +75,34 @@ a{
     height: 100%;
     border-radius: 25px;
     position: absolute;
-    background-color: darkgrey;
-    top: 10px;
+    background-color: lightgrey;
+    top: 3px;
     z-index: -1;
 }
 
 #gemiddeld h3{
-    margin-left: 20px;
     font-family: 'Poppins', sans-serif;
+    text-align: center;
+    color: grey;
+    font-weight: lighter;
 }
 
 #gemiddeld h1{
-    margin-left: 80px;
     margin-top: -5px;
     font-family: 'Poppins', sans-serif;
-    font-size: 3em;
+    font-size: 2.5em;
+    text-align: center;
 
 }
 
 #afgerond{
-    width: 320px;
-    height: 170px;
+    width: 360px;
+    height: 130px;
     border-radius: 25px;
     background-color: white;
     position: absolute;
-    left: 50vw;
-    top: 50px;
-    border: solid rgba(0, 0, 0, 0.2) 1px;
+    left: 45vw;
+    top: 190px;
 }
 
 #afgerond #afgerond-back{
@@ -90,37 +110,37 @@ a{
     height: 100%;
     border-radius: 25px;
     position: absolute;
-    background-color: darkgrey;
-    top: 10px;
+    background-color: lightgrey;
+    top: 2px;
     z-index: -1;
 }
 
 #afgerond h3{
-    margin-left: 20px;
     font-family: 'Poppins', sans-serif;
+    text-align: center;
+    color: grey;
+    font-weight: lighter;
 }
 
 #afgerond h1{
-    margin-left: 80px;
     margin-top: -5px;
     font-family: 'Poppins', sans-serif;
-    font-size: 3em;
+    font-size: 2.5em;
+    text-align: center;
 
 }
 
 
 #courses{
-    width: 800px;
-    height: 350px;
+    width: 1000px;
+    height: 700px;
     background-color: white;
     position: absolute;
-    left: 15vw;
-    top: 40vh;
+    left: 10vw;
+    top: 350px;
     border-radius: 27px;
     overflow-y: scroll;
-    border: solid rgba(0, 0, 0, 0.2) 1px;
 }
-
 #courses-back{
     width: 800px;
     height: 350px;
@@ -133,53 +153,53 @@ a{
 
 }
 
-#courses #course{
+#courses .course{
     width: 200px;
     height: 300px;
     background-color: white;
     border-radius: 30px;
-    margin-left: 30px;
-    margin-top: 20px;
+    margin-left: 34px;
+    margin-top: 34px;
     float: left;
-    filter: drop-shadow(10px 10px 20px rgba(0, 0, 0, 0.25));
+    filter: drop-shadow(4px 4px 11px rgba(0, 0, 0, 0.15));
 }
 
-#courses #course img{
+#courses .course img{
     width: 100%;
     height: 80px;
     border-radius: 30px 30px 0 0;
     object-fit: cover;
 }
 
-#courses #course h3{
+#courses .course h3{
     margin-left: 10px;
 }
 
-#courses #course p{
+#courses .course p{
     margin-left: 10px;
     font-size: 10px;
 }
 
-#courses #course #empty{
+#courses .course #empty{
     width: 130px;
     height: 5px;
     background-color: #F0F0F0;
     border-radius: 25px;
     position: absolute;
     left: 10px;
-    top: 250px;
+    top: 272px;
 }
 
-#courses #course #empty #progress{
+#courses .course #empty #progress{
     width: 68%;
     height: 5px;
     background-color: #FF8888;
     border-radius: 25px;
 }
 
-#courses #course span{
+#courses .course span{
     position: absolute;
-    top: 240px;
+    top: 265px;
     left: 160px;
 }
 
@@ -198,45 +218,69 @@ a{
   }
    
 
-@media only screen and (max-width: 1000px) {
-    body{
-        overflow-y: scroll;
-    }
+  
 
+@media only screen and (max-width: 1111px) {
+    
+    #sidebox{
+        width: 20px;
+    }
     #afgerond{
         left: 10vw;
         top: 350px;
+        visibility: hidden;
         
     }
-
     #gemiddeld{
-        left: 10vw;
+        left: 35vw;
     }
-
     #courses{
-        width: 350px;
+        width: 850px;
         left: 10vw;
-        top: 80vh;
+    }
+    #chart{
+        visibility: hidden;
     }
 
-    #courses-back{
-        width: 350px;
-        left: 10vw;
-        top: calc(80vh + 10px);
-    }
 }
 
 
-@media only screen and (max-width: 500px) {
-    #sidebox{
-        width: 10px;
-        height: 1000px;
+@media only screen and (max-width: 795px) {
+   
+    #afgerond{
+        left: 10vw;
+        top: 350px;
+        visibility: hidden;
+        
     }
-    body{
-        overflow-y: scroll;
-        overflow-x: hidden;
+    #gemiddeld{
+        left: 25vw;
     }
+    #courses{
+        width: 650px;
+        left: 10vw;
+    }
+    #chart{
+        visibility: hidden;
+    }
+}
+
+@media only screen and (max-width: 540px) {
+    
+    #afgerond{
+        visibility: hidden;
+        
+    }
+    #gemiddeld{
+        left: 15vw;
+    }
+    #courses{
+        width: 450px;
+        left: 25vw;
+    }
+
     #profile-picture{
+        margin-right: 5px;
         width: 40px;
         height: 40px;
         background-size: 40px 40px;
@@ -247,10 +291,27 @@ a{
         left: 50px;
         top: 10px;
     }
-
-    #gemiddeld{
-        top: 70px;
-    }
+    /* https://lh3.googleusercontent.com/X2efEVHhn8nD_GrBVww5vDgVAOEXfdEjAH7EiEpdqTJsEC3Y262l6XCTcs7HmooIelR-WF6yRsdKxEnXVlP0PscgMrVvKVELqAomkb339qehJVhS7_at2UiUQtTFALC-BoMkiKgAUg=w2400 */
+}
+#chart {
+    background: url(https://lh3.googleusercontent.com/X2efEVHhn8nD_GrBVww5vDgVAOEXfdEjAH7EiEpdqTJsEC3Y262l6XCTcs7HmooIelR-WF6yRsdKxEnXVlP0PscgMrVvKVELqAomkb339qehJVhS7_at2UiUQtTFALC-BoMkiKgAUg=w2400);
+    width: 270px;
+    height: 375px;
+    position: absolute;
+    top: 200px;
+    left: 80vw;
+    background-repeat: no-repeat;
+    background-size:cover;
+    z-index: -100;
 }
 
-
+.sorts {
+  color: #000;   
+  transition: all .5s ease-in-out;
+  position: absolute;  
+  top: 180px;
+  display: flex;  
+  align-items: center;  
+  font-size: 0.9em;
+  
+}

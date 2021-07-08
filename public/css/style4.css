@@ -1,0 +1,21 @@
+body{
+    overflow-x: hidden;
+    overflow-y: hidden;
+    background: #EBEBEB;
+    width: 100%;
+    height: 100%;
+}
+
+iframe{
+    width: 50vw;
+    height: 28vw;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    padding: 40px;
+    border-radius: 20px;
+    border: none;
+    background: #EBEBEB;
+    box-shadow: inset -5px -5px 10px rgba(255, 255, 255, 0.25), inset 5px 5px 10px rgba(0, 0, 0, 0.4);
+}

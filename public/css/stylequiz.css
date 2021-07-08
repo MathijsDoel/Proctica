@@ -1,59 +1,103 @@
 body{
-    background: linear-gradient(111.34deg, #E4FFF2 0%, #DCF7FF 100%);
+    background: rgba(235, 235, 235, 1);
     font-family: 'Libre Franklin', sans-serif;
 }
 
 #box{
-    background-color: white;
-    border-radius: 5em;
+    background: rgba(255, 255, 255, 0.6);
+    border: 1px solid #FFFFFF;
+    border-radius: 40px;
     width: 80vw;
-    height: 70vh;
+    height: 80vh;
     position: absolute;
     left: 50%;
     top: 50%;
-    transform: translate(-50%, -60%);
+    transform: translate(-50%, -50%);
     font-size: 1.2vw;
 }
 
 #box h1{
     text-align: center;
+    width: 100%;
+    background-color: white;
+    height: 10vh;
+    border-radius: 40px 40px 0 0;
+    margin-top: 0px;
+    padding-top: 5vh;
 }
 
-a{
-    color: black;
+#box .antwoord{
+    margin-top: 50px;
+    background-color: white;
+    width: 40%;
+    height: 70px;
+    border-radius: 20px;
+    float: left;
+    margin-left: 6.7%;
+    transition: linear 0.2s;
+}
+
+#box .antwoord:hover{
+    background-color: #7998FF;
+    transition: linear 0.2s;
+    border-radius: 20px;
+}
+
+
+
+#box .antwoord button{
+    cursor: pointer;
+    border: none;
+    background: none;
+    text-align: center;
+    position: relative;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%;
+    height: 100%;
+}
+
+#box a{
     text-decoration: none;
 }
 
-ul{
-    list-style-type: none;
-    position: relative;
-    top: 1vh;
+
+
+#box #bottom-button{
+    width: 100%;
+    height: 10vh;
+    background: radial-gradient(98.06% 268.92% at 1.94% 3.5%, #FF5959 0%, #FF6AB2 100%);
+    position: absolute;
+    bottom: 0px;
+    border-radius: 0 0 40px 40px;
+    color: white;
 }
 
-ul li{
-    margin-top: 7vh;
-}
-
-#box button{
-    font-size: 120%;
-    background-color: rgba(0, 0, 0, 0.1);
-    padding: 0.8vw;
-    border-radius: 1em;
-    cursor: pointer;
-    border: none;
-}
-#box button:hover{
-    background-color: rgba(161, 182, 255, 0.5);
-    transition: 0.1s linear;
-}
-
-.skip-button{
-    background-color: white;
-    position: relative;
-    border-radius: 1em;
-    padding: 1.3vw 3vw;
-    top: 85vh;
+#box #bottom-button #previous{
+    position: absolute;
     left: 25%;
-    transform: translate(0%, -50%);
-    margin-left: 7vw;
+    transform: translate(-50%, -50%);
+    top: 50%;
+    color: white;
+    font-size: 1.5em;
+    padding: 2% 21%;
+}
+
+#box #bottom-button #next{
+    position: absolute;
+    left: 75%;
+    transform: translate(-50%, -50%);
+    top: 50%;
+    color: white;
+    font-size: 1.5em;
+    padding: 2% 21%;
+}
+
+#vl{
+    width: 1px;
+    height: 100%;
+    background-color: white;
+    position: absolute;
+    left: 50%;
 }

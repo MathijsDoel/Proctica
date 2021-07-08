@@ -12,23 +12,32 @@
 <body>
     <div id="box">
         <h1><%=main_question%></h1>
-        <ul>
             <form action="?"  method="post">
                 <% let abcde = ['a', 'b', 'c', 'd', 'e']; %>
                 <% for (var i =0; i < answers.length;  i++ ) { %>
-                    <li><button type="submit" name="value" value=<%=i%>><%=abcde[i]%>: <%=answers[i]%></button></li>
+                    <div class="antwoord" id=<%=abcde[i]%>>
+                        <button type="submit" name="value" value=<%=i%>><%=abcde[i]%>: <%=answers[i]%></button>
+                    </div>
                 <% } %>
+                <style>
+                    #box #<%=abcde[given]%>{
+                        background-color: #7998FF;
+                    }
+                </style>
             </form> 
-        </ul>
+        <div id="bottom-button">
+            <a class="skip-button" id="previous" href=<%=previous%>>Vorige</a>
+            <div id="vl"></div>
+            <a class="skip-button" id="next" href= <%=next%>>Volgende</a>
+        </div>
     </div>
-    <a class="skip-button" id="previous" href=<%=previous%>>Vorige</a>
-    <a class="skip-button" id="next" href= <%=next%>>Volgende</a>
     <script>
         let next_button = document.getElementById("next");
         let previous_button = document.getElementById("previous");
         let index = <%=next%> - 1;
         if(index >= <%=total_questions%>-1){
-            next_button.style.visibility = "hidden";
+            next_button.innerHTML = "Naar overzicht";
+            next_button.href = "/overview/" + <%=course%>;
         }
         if(index <= 0){
             previous_button.style.visibility = "hidden";
