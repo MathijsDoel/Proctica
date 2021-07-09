@@ -1,6 +1,6 @@
 {
   "users": {
-    "mattydoel": {
+    "maria": {
       "course2": {
         "questions": [
           {
@@ -47,6 +47,10 @@
         ],
         "complete": false
       }
+    },
+    "mattydoel" : {
+      "course1": [],
+      "course2": []
     }
   }
 }
