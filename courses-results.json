@@ -1,11 +1,11 @@
 {
   "users": {
-    "maria": {
-      "course2": {
+    "mattydoel": {
+      "course1": {
         "questions": [
           {
             "question": "0",
-            "answer": "1"
+            "answer": "2"
           },
           {
             "question": "1",
@@ -13,7 +13,7 @@
           },
           {
             "question": "2",
-            "answer": "1"
+            "answer": "3"
           },
           {
             "question": "3",
@@ -25,32 +25,58 @@
           },
           {
             "question": "5",
-            "answer": "0"
+            "answer": "1"
           }
         ],
-        "complete": false
+        "complete": true,
+        "grade": 8.5,
+        "corrected": [
+          "2",
+          "3",
+          "3",
+          "2",
+          "3",
+          "1"
+        ]
       },
-      "course1": {
+      "course2": {
         "questions": [
           {
             "question": "0",
-            "answer": "3"
+            "answer": "0"
           },
           {
             "question": "1",
-            "answer": "0"
+            "answer": "1"
           },
           {
             "question": "2",
+            "answer": "2"
+          },
+          {
+            "question": "3",
+            "answer": "3"
+          },
+          {
+            "question": "4",
+            "answer": "3"
+          },
+          {
+            "question": "5",
             "answer": "0"
           }
         ],
-        "complete": false
+        "complete": true,
+        "grade": 7,
+        "corrected": [
+          "0",
+          "1",
+          "2",
+          "3",
+          "3",
+          "0"
+        ]
       }
-    },
-    "mattydoel" : {
-      "course1": [],
-      "course2": []
     }
   }
 }
