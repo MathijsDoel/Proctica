@@ -82,6 +82,10 @@ app.get("/dashboard", (req, res)=> {
                 let average;
         
                 for(let j = 0; j < courses.length;j++){
+                    if(temp_userdata == undefined){
+                        progress.push(0);
+                    }
+                    else{
                     if(temp_userdata["course" + (j + 1)] != undefined){
                         if(temp_userdata["course" + (j + 1)]["grade"] > 0){
                             grades.push(temp_userdata["course" + (j + 1)]["grade"]);
@@ -113,6 +117,7 @@ app.get("/dashboard", (req, res)=> {
                     else{
                         progress.push(0);
                     }
+                }
                 }
                 if(grades.length > 0){
                     average = total/grades.length;
