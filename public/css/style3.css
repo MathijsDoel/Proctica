@@ -36,9 +36,24 @@ a{
 }
 
 #sidebox{
-    background: linear-gradient(128.47deg, rgba(111,82,237, 0.49) 33.29%, rgba(86, 85, 125, 0.3) 103.28%);
+    background: linear-gradient(180deg, #3B3A43 0%, #151515 100%);
     width: 100px;
-    height: 2000px;
+    height: 100vh;
+}
+
+#sidebox h3{
+    width: 100%;
+    height: 100vh;
+    color: rgba(255, 255, 255, 0.9);
+    font-family: 'Poppins', sans-serif;
+    text-orientation: upright;
+    writing-mode: vertical-rl;
+    font-size: 30px;
+    margin: 0;
+    position: relative;
+    left: -40px;
+    top: 10px;
+    
 }
 
 #profile-picture{
@@ -133,7 +148,7 @@ a{
 
 #courses{
     width: 1000px;
-    height: 700px;
+    height: 400px;
     background-color: white;
     position: absolute;
     left: 10vw;
@@ -190,12 +205,12 @@ a{
     top: 272px;
 }
 
-#courses .course #empty #progress{
+/* #courses .course #empty #progress{
     width: 68%;
     height: 5px;
     background-color: #FF8888;
     border-radius: 25px;
-}
+} */
 
 #courses .course span{
     position: absolute;

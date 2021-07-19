@@ -6,14 +6,50 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Proctos Academy</title>
     <link rel="icon" type="image/png" href="https://proctoskliniek.nl/wp-content/themes/understrap-child/inc/media/logo_sticky2.png "/>
+    <link rel="stylesheet" href="/css/overviewstyle.css">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Libre+Franklin:wght@100&display=swap" rel="stylesheet">
 </head>
 <body>
-    <%for(let i = 0;i<info.length;i++){ %>
-        <h1><%=info[i]%></h1>
+    <div id="main-box">
+        <% let wrongs = []; %>
+        <%for(let i = 0;i<info.length;i++){ %>
+            <% let abc = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't']; %>
+            <div id="q-box">
+                <h1>Q<%=i+1%></h1>
+                <h2><%=questions[i]%></h2>
+                <div class="a-box" id="<%=abc[i]%>">
+                    <%if(info[i] == "Geen antwoord ingevuld"){ %>
+                        <h3>Geen antwoord ingevuld</h3>
+                        <% wrongs.push(abc[i])%>
+                    <%} else{%>
+                        <h3><%=answers[i][info[i]]%></h3>
+                    <%}%>
+                </div>
+            </div>
+        <%}%>
+    </div>
+    <div id="under-box">
+        <a href="/quiz/<%=index%>/0">Terug naar vragen</a>
+        <div id="vl"></div>
+        <form action="?" method="POST">
+            <button type="submit">lever quiz in</button>
+        </form>
+    </div>
+
+    <div id="top-box">
+        <h4>Vragen ingevuld</h4>
+        <h2><%=questions.length - wrongs.length%>/<%=questions.length%></h2>
+    </div>
+    <div id="back-box"></div>
+
+    <%for(let i = 0;i<wrongs.length;i++){%>
+    <style>
+            #<%=wrongs[i]%>{
+                border: solid 3px red;
+            }
+    </style>
     <%}%>
 
-    <form action="?" method="POST">
-        <button type="submit">lever quiz in</button>
-    </form>
 </body>
 </html>

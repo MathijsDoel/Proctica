@@ -1,6 +1,7 @@
 const Express = require("express");
 const bodyParser = require('body-parser');
 const fs = require('fs');
+const e = require("express");
 
 
 const app = Express();
@@ -63,10 +64,64 @@ app.get("/dashboard", (req, res)=> {
     else{
         for(let i = 0;i<loggedIn.length;i++){
             if(req.socket.remoteAddress == loggedIn[i]["IP"]){
+                let user = loggedIn[i]["username"];
                 let rawdata = fs.readFileSync('courses-info.json');
                 let data = JSON.parse(rawdata);
                 let courses = data["courses"];
-                res.render(__dirname + "/public/dashboard.ejs", {courses: courses});
+
+                let rawdata2 = fs.readFileSync('courses-results.json');
+                let temp_data2 = JSON.parse(rawdata2);
+                let temp_userdata = temp_data2["users"][user];
+
+                let rawdata3 = fs.readFileSync('questions.json');
+                let questions = JSON.parse(rawdata3);
+
+                let grades = [];
+                let progress = [];
+                let total = 0;
+                let average;
+        
+                for(let j = 0; j < courses.length;j++){
+                    if(temp_userdata["course" + (j + 1)] != undefined){
+                        if(temp_userdata["course" + (j + 1)]["grade"] > 0){
+                            grades.push(temp_userdata["course" + (j + 1)]["grade"]);
+                            total += temp_userdata["course" + (j + 1)]["grade"];
+                        }
+                        let temp_progress = 0;
+                        if(temp_userdata["course" + (j + 1)]["questions"].length > 0){
+                            temp_progress += Math.round((temp_userdata["course" + (j + 1)]["questions"].length / questions["course" + (j + 1)].length) * 50);
+                        }
+    
+                        if(temp_userdata["course" + (j + 1)]["info"]){
+                            temp_progress += 25;
+                        }
+                        if(temp_userdata["course" + (j + 1)]["movie"]){
+                            temp_progress += 25;
+                        }
+    
+                        if(temp_userdata["course" + (j + 1)]["complete"]){
+                            temp_progress = 100;
+                        }
+                        else{
+                            temp_progress *= 0.9;
+                            temp_progress = Math.round(temp_progress);
+                        }
+    
+                        progress.push(temp_progress);
+
+                    }
+                    else{
+                        progress.push(0);
+                    }
+                }
+                if(grades.length > 0){
+                    average = total/grades.length;
+                }
+                else{
+                    average = "-";
+                }
+                
+                res.render(__dirname + "/public/dashboard.ejs", {courses: courses, grades: grades, average: average, progress: progress});
                 break;
             }
             else if(i == loggedIn.length - 1){
@@ -90,6 +145,11 @@ app.get("/quiz/:course/:index", (req, res)=>{
                 let temp_data = JSON.parse(rawdata);
                 let data = temp_data["course" + course];
 
+                if(data == undefined){
+                    res.send('<h1>Deze cursus is nof niet af/h1><a href="/dashboard">Terug naar dashboard</a>');
+                    return;
+                }
+
                 let rawdata2 = fs.readFileSync('courses-results.json');
                 let temp_data2 = JSON.parse(rawdata2);
                 let temp_userdata = temp_data2["users"][user];
@@ -103,7 +163,7 @@ app.get("/quiz/:course/:index", (req, res)=>{
                 let test_data = temp_data2["users"][user]["course" + course];
                 let data2;
                 if(test_data == undefined){
-                    temp_data2["users"][user]["course" + course] = {"questions": [], "complete": false, "grade": 0, "corrected": []};
+                    temp_data2["users"][user]["course" + course] = {"questions": [], "complete": false, "grade": 0, "corrected": [], "info": false, "movie": false};
                     let json_data = JSON.stringify(temp_data2, null, 2);
                     fs.writeFileSync("courses-results.json", json_data);
                     rawdata2 = fs.readFileSync('courses-results.json');
@@ -214,9 +274,31 @@ app.get("/results/:index", (req, res)=>{
                 let rawdata_results = fs.readFileSync('courses-results.json');
                 let data_results = JSON.parse(rawdata_results);
                 let users_results = data_results["users"][user]["course" + index]["questions"];
+
+                let users_results2 =  data_results["users"][user]["course" + index]["corrected"];
+
                 let grade = data_results["users"][user]["course" + index]["grade"];
-                let user_answers = data_results["users"][user]["course" + index]["corrected"];
-                res.render(__dirname + "/public/results.ejs", {info: user_answers, grade: grade});
+
+                let real_questions = [];
+                for(let j = 0;j<length;j++){
+                    real_questions.push(questions[j]["question"]);
+                }
+                let real_answers = [];
+                for(let j = 0;j<length;j++){
+                    real_answers.push(questions[j]["answers"]);
+                }
+                let correct = [];
+                let amount = 0;
+                for(let j = 0;j<length;j++){
+                    if(users_results2[j] == questions[j]["correct"].toString()){
+                        correct.push(j);
+                        amount++;
+                    }
+                    else{
+                        correct.push(-1);
+                    }
+                }
+                res.render(__dirname + "/public/results.ejs", {info: users_results2, questions: real_questions, answers: real_answers, index: index, correct: correct, grade: grade, amount: amount});
                 break;
             }
             else if(i == loggedIn.length - 1){
@@ -231,17 +313,64 @@ app.get("/home", (req, res)=>{
 })
 
 app.get("/movie/:index", (req, res)=>{
-    let index = parseInt(req.params.index);
-    let rawdata = fs.readFileSync('courses-info.json');
-    let data = JSON.parse(rawdata);
-    let courses = data["courses"];
-    let video;
-    for(let j = 0; j < courses.length;j++){
-        if(courses[j]["id"] == index){
-            video = "https://www.youtube.com/embed/" + courses[j]["video"];
+    if(loggedIn.length == 0){
+        res.redirect('/')
+    }
+    else{
+        for(let i = 0;i < loggedIn.length;i++){
+            if(loggedIn[i]["IP"] == req.socket.remoteAddress){
+                user = loggedIn[i]["username"]
+                let index = parseInt(req.params.index);
+                let rawdata = fs.readFileSync('courses-info.json');
+                let data = JSON.parse(rawdata);
+                let courses = data["courses"];
+
+                let rawdata2 = fs.readFileSync('courses-results.json');
+                let temp_data2 = JSON.parse(rawdata2);
+                let temp_userdata = temp_data2["users"][user];
+                if(temp_userdata == undefined){
+                    temp_data2["users"][user] = {};
+                    let json_data = JSON.stringify(temp_data2, null, 2);
+                    fs.writeFileSync("courses-results.json", json_data);
+                    rawdata2 = fs.readFileSync('courses-results.json');
+                    temp_data2 = JSON.parse(rawdata2);
+                }
+                let test_data = temp_data2["users"][user]["course" + index];
+                let data2;
+                if(test_data == undefined){
+                    temp_data2["users"][user]["course" + index] = {"questions": [], "complete": false, "grade": 0, "corrected": [], "info": false, "movie": false};
+                    let json_data = JSON.stringify(temp_data2, null, 2);
+                    fs.writeFileSync("courses-results.json", json_data);
+                    rawdata2 = fs.readFileSync('courses-results.json');
+                    temp_data2 = JSON.parse(rawdata2);
+                    data2 = temp_data2["users"][user]["course" + index]["questions"];
+                }
+                else{
+                    data2 = temp_data2["users"][user]["course" + index]["questions"];
+                }
+                
+                if(temp_data2["users"][user]["course" + index]["movie"] == false){
+                    temp_data2["users"][user]["course" + index]["movie"] = true;
+                    let json_data = JSON.stringify(temp_data2, null, 2);
+                    fs.writeFileSync("courses-results.json", json_data);
+                    rawdata2 = fs.readFileSync('courses-results.json');
+                    temp_data2 = JSON.parse(rawdata2);
+                }
+
+
+                let video;
+                for(let j = 0; j < courses.length;j++){
+                    if(courses[j]["id"] == index){
+                        video = "https://www.youtube.com/embed/" + courses[j]["video"];
+                    }
+                }
+                res.render(__dirname + "/public/movie.ejs", {video: video, index: index})
+            }
+            else if(i == loggedIn.length - 1){
+                res.redirect("/")
+            }
         }
     }
-    res.render(__dirname + "/public/movie.ejs", {video: video})
 })
 
 app.get("/overview/:index", (req, res)=>{
@@ -276,10 +405,19 @@ app.get("/overview/:index", (req, res)=>{
                         back+=1;
                     }
                 }
+
+                let real_questions = [];
+                for(let j = 0;j<length;j++){
+                    real_questions.push(questions[j]["question"]);
+                }
+                let real_answers = [];
+                for(let j = 0;j<length;j++){
+                    real_answers.push(questions[j]["answers"]);
+                }
                 data_results["users"][user]["course" + index]["corrected"] = user_answers;
                 let json_data = JSON.stringify(data_results, null, 2);
                 fs.writeFileSync("courses-results.json", json_data);
-                res.render(__dirname + "/public/overview.ejs", {info: user_answers});
+                res.render(__dirname + "/public/overview.ejs", {info: user_answers, questions: real_questions, answers: real_answers, index: index});
                 break;
             }
             else if(i == loggedIn.length - 1){
@@ -341,21 +479,72 @@ app.get("/logout", (req, res)=>{
 })
 
 app.get("/info/:index", (req, res)=>{
-    let index = parseInt(req.params.index);
-    let rawdata_questions = fs.readFileSync('courses-info.json');
-    let data = JSON.parse(rawdata_questions);
-    let info = data["courses"];
-    let info2;
-    for(let j = 0;j<info.length;j++){
-        if(info[j]["id"] == index){
-            info2 = info[j]["pdf"];
-            break;
-        }
-        else if(j == info.length - 1){
-            info2 = "error"
+    if(loggedIn.length == 0){
+        res.redirect('/')
+    }
+    else{
+        for(let i = 0;i < loggedIn.length;i++){
+            if(loggedIn[i]["IP"] == req.socket.remoteAddress){
+                user = loggedIn[i]["username"]
+                let index = parseInt(req.params.index);
+                let rawdata = fs.readFileSync('courses-info.json');
+                let data = JSON.parse(rawdata);
+                let courses = data["courses"];
+
+                let rawdata2 = fs.readFileSync('courses-results.json');
+                let temp_data2 = JSON.parse(rawdata2);
+                let temp_userdata = temp_data2["users"][user];
+                if(temp_userdata == undefined){
+                    temp_data2["users"][user] = {};
+                    let json_data = JSON.stringify(temp_data2, null, 2);
+                    fs.writeFileSync("courses-results.json", json_data);
+                    rawdata2 = fs.readFileSync('courses-results.json');
+                    temp_data2 = JSON.parse(rawdata2);
+                }
+                let test_data = temp_data2["users"][user]["course" + index];
+                let data2;
+                if(test_data == undefined){
+                    temp_data2["users"][user]["course" + index] = {"questions": [], "complete": false, "grade": 0, "corrected": [], "info": false, "movie": false};
+                    let json_data = JSON.stringify(temp_data2, null, 2);
+                    fs.writeFileSync("courses-results.json", json_data);
+                    rawdata2 = fs.readFileSync('courses-results.json');
+                    temp_data2 = JSON.parse(rawdata2);
+                    data2 = temp_data2["users"][user]["course" + index]["questions"];
+                }
+                else{
+                    data2 = temp_data2["users"][user]["course" + index]["questions"];
+                }
+                
+                if(temp_data2["users"][user]["course" + index]["info"] == false){
+                    temp_data2["users"][user]["course" + index]["info"] = true;
+                    let json_data = JSON.stringify(temp_data2, null, 2);
+                    fs.writeFileSync("courses-results.json", json_data);
+                    rawdata2 = fs.readFileSync('courses-results.json');
+                    temp_data2 = JSON.parse(rawdata2);
+                }
+
+
+                let info2;
+                for(let j = 0; j < courses.length;j++){
+                    if(courses[j]["id"] == index){
+                        info2 = courses[j]["pdf"];
+                        break;
+                    }
+                }
+                res.render(__dirname + "/public/pdf.ejs", {info: info2, index: index})
+            }
+            else if(i == loggedIn.length - 1){
+                res.redirect("/")
+            }
         }
     }
-    res.render(__dirname + "/public/pdf.ejs", {info:info2})
+})
+
+app.get("/test", (req, res)=>{
+    let thing = {"aot": 'Great', "hxh": "Great", "jk": "trash"}
+    console.log(thing["aot"]);
+    console.log(thing["parasyte"]);
+    res.send("hello")
 })
 
 app.listen(process.env.PORT || port, ()=>{

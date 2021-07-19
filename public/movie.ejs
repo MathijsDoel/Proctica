@@ -4,11 +4,16 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/css/style4.css">
+    <link rel="stylesheet" href="/css/infostyle.css">
     <title>Proctos Academy</title>
     <link rel="icon" type="image/png" href="https://proctoskliniek.nl/wp-content/themes/understrap-child/inc/media/logo_sticky2.png "/>
 </head>
 <body>
     <iframe src=<%=video%> allow="fullscreen;"></iframe>
+    <div id="bottom-button">
+        <a class="skip-button" id="previous" href="/info/<%=index%>">Terug naar info</a>
+        <div id="vl"></div>
+        <a class="skip-button" id="next" href="/quiz/<%=index%>/0">Naar quiz</a>
+    </div>
 </body>
 </html>

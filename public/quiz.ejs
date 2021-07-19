@@ -22,7 +22,7 @@
                 <% } %>
                 <style>
                     #box #<%=abcde[given]%>{
-                        background-color: #7998FF;
+                        background-color: #897EFF;
                     }
                 </style>
             </form> 
@@ -41,7 +41,8 @@
             next_button.href = "/overview/" + <%=course%>;
         }
         if(index <= 0){
-            previous_button.style.visibility = "hidden";
+            previous_button.innerHTML = "Naar filmpje";
+            previous_button.href = "/movie/" + <%=course%>;
         }
     </script>
 </body>
