@@ -301,10 +301,10 @@ a{
 }
 #chart {
     background: url(https://lh3.googleusercontent.com/X2efEVHhn8nD_GrBVww5vDgVAOEXfdEjAH7EiEpdqTJsEC3Y262l6XCTcs7HmooIelR-WF6yRsdKxEnXVlP0PscgMrVvKVELqAomkb339qehJVhS7_at2UiUQtTFALC-BoMkiKgAUg=w2400);
-    width: 18vw;
-    height: 50vh;
+    width: 15vw;
+    height: 45vh;
     position: absolute;
-    top: calc(150px + 10vh);
+    top: calc(150px + 15vh);
     left: 78vw;
     background-repeat: no-repeat;
     background-size:cover;
