@@ -152,7 +152,7 @@ a{
     background-color: white;
     position: absolute;
     left: 10vw;
-    top: calc(300px + 5vh);
+    top: calc(250px + 16vh);
     border-radius: 27px;
     overflow-y: scroll;
 }
@@ -304,8 +304,8 @@ a{
     width: 18vw;
     height: 50vh;
     position: absolute;
-    top: 200px;
-    left: 80vw;
+    top: calc(150px + 10vh);
+    left: 78vw;
     background-repeat: no-repeat;
     background-size:cover;
     z-index: -100;
