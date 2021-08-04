@@ -27,7 +27,7 @@
         },
         {
             "question": "Welke hemorroïden zijn vaak pijnlijk?",
-            "answers": ["Inwendige hemorroïden", "Inwendige hemorroïden"],
+            "answers": ["Inwendige hemorroïden", "Uitwendige hemorroïden"],
             "correct": 0
         }  
     ],

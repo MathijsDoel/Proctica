@@ -57,9 +57,9 @@
                 width: <%=progress[i]%>%;
                 height: 5px;
                 <%
-                    let red = (-0.0155 * progress[i] ** 2) + 255;
-                    let green = (0.0000155 * progress[i] ** 4)  + 100;
-                    let blue = 0.05 * (progress[i] - 50) ** 2;
+                    let red = progress[i] * 1.16 + 126;
+                    let green = progress[i] * 0.09 + 151;
+                    let blue = progress[i] * -0.16 + 252;
                 %>
                 background-color: rgb(<%=red%>, <%=green%>, <%=blue%>);
                 border-radius: 25px;

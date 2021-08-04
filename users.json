@@ -15,6 +15,10 @@
         {
             "username": "charlotte",
             "password": "123456789"
+        },
+        { 
+            "username": "admin",
+            "password": "C79E99DB9C1265C99FD78CA9F1A3E4A5414DA85B7A7464C4F1FE8EE874BDBAF0"
         }
     ]
 }

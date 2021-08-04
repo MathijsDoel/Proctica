@@ -545,11 +545,21 @@ app.get("/info/:index", (req, res)=>{
     }
 })
 
-app.get("/test", (req, res)=>{
-    let thing = {"aot": 'Great', "hxh": "Great", "jk": "trash"}
-    console.log(thing["aot"]);
-    console.log(thing["parasyte"]);
-    res.send("hello")
+
+app.get("/admin", (req, res)=>{
+    if(loggedIn.length == 0){
+        res.redirect('/')
+    }
+    else{
+        for(let i = 0;i < loggedIn.length;i++){
+            if(loggedIn[i]["IP"] == req.socket.remoteAddress){
+                if(loggedIn[i]["username"] == 'admin'){
+                    res.send('werkt')
+                }
+                res.send("je hebt geen toegang tot deze pagina ga weg noob")
+            }
+        }
+    }   
 })
 
 app.listen(process.env.PORT || port, ()=>{
