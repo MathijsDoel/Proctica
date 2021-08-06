@@ -57,22 +57,22 @@ a{
 }
 
 #profile-picture{
-    background-image: url("https://proctoskliniek.nl/wp-content/uploads/2021/04/253_MartinHogeboom_16-02-21-1-Danielle-van-Reijn-150x150.jpg");
+    background-image: url("https://i.pinimg.com/originals/0c/3b/3a/0c3b3adb1a7530892e55ef36d3be6cb8.png");
     background-position: center;
-    background-size: 80px 80px;
-    background-color: darkgrey;
-    width: 80px;
-    height: 80px;
+    background-size: 60px 60px;
+    background-color: white;
+    width: 60px;
+    height: 60px;
     position: absolute;
-    right: 7vw;
-    top: 3vh;
+    right: 9vw;
+    top: 5vh;
     border-radius: 50%;
 }
 
 #profile-picture svg{
     position: absolute;
-    left: 90px;
-    top: 25px;
+    left: 80px;
+    top: 10px;
 }
 
 #gemiddeld{

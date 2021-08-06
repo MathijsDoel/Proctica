@@ -1,24 +1,72 @@
 {
     "users": [
         {
-            "username": "mattydoel",
+            "username": "dev",
             "password": "123456789"
         },
         {
-            "username": "san",
+            "username": "pep",
             "password": "123456789"
         },
         {
-            "username": "maria",
-            "password": "123456789"
+            "username": "Maria",
+            "password": "Maria54"
         },
         {
-            "username": "charlotte",
-            "password": "123456789"
+            "username": "Charlotte",
+            "password": "Charlotte64"
         },
         { 
             "username": "admin",
-            "password": "C79E99DB9C1265C99FD78CA9F1A3E4A5414DA85B7A7464C4F1FE8EE874BDBAF0"
+            "password": "123456789"
+        },
+        { 
+            "username": "Willemien",
+            "password": "Willemien40"
+        },
+        { 
+            "username": "Desiree",
+            "password": "Desiree48"
+        },
+        { 
+            "username": "Faiza",
+            "password": "Faiza97"
+        },
+        { 
+            "username": "Bernice",
+            "password": "Bernice58"
+        },
+        { 
+            "username": "Femke",
+            "password": "Femke34"
+        },
+        { 
+            "username": "Yasmin",
+            "password": "Yasmin98"
+        },
+        { 
+            "username": "Jori",
+            "password": "Jori81"
+        },
+        { 
+            "username": "Chyara",
+            "password": "Chyara57"
+        },
+        { 
+            "username": "MAT1",
+            "password": "MAT169"
+        },
+        { 
+            "username": "Noura",
+            "password": "Noura13"
+        },
+        { 
+            "username": "Danielle",
+            "password": "Danielle8"
+        },
+        { 
+            "username": "roadhog",
+            "password": "roadhog123"
         }
     ]
 }

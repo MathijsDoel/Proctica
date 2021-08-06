@@ -65,70 +65,75 @@ app.get("/dashboard", (req, res)=> {
         for(let i = 0;i<loggedIn.length;i++){
             if(req.socket.remoteAddress == loggedIn[i]["IP"]){
                 let user = loggedIn[i]["username"];
-                let rawdata = fs.readFileSync('courses-info.json');
-                let data = JSON.parse(rawdata);
-                let courses = data["courses"];
-
-                let rawdata2 = fs.readFileSync('courses-results.json');
-                let temp_data2 = JSON.parse(rawdata2);
-                let temp_userdata = temp_data2["users"][user];
-
-                let rawdata3 = fs.readFileSync('questions.json');
-                let questions = JSON.parse(rawdata3);
-
-                let grades = [];
-                let progress = [];
-                let total = 0;
-                let average;
-        
-                for(let j = 0; j < courses.length;j++){
-                    if(temp_userdata == undefined){
-                        progress.push(0);
-                    }
-                    else{
-                    if(temp_userdata["course" + (j + 1)] != undefined){
-                        if(temp_userdata["course" + (j + 1)]["grade"] > 0){
-                            grades.push(temp_userdata["course" + (j + 1)]["grade"]);
-                            total += temp_userdata["course" + (j + 1)]["grade"];
-                        }
-                        let temp_progress = 0;
-                        if(temp_userdata["course" + (j + 1)]["questions"].length > 0){
-                            temp_progress += Math.round((temp_userdata["course" + (j + 1)]["questions"].length / questions["course" + (j + 1)].length) * 50);
-                        }
-    
-                        if(temp_userdata["course" + (j + 1)]["info"]){
-                            temp_progress += 25;
-                        }
-                        if(temp_userdata["course" + (j + 1)]["movie"]){
-                            temp_progress += 25;
-                        }
-    
-                        if(temp_userdata["course" + (j + 1)]["complete"]){
-                            temp_progress = 100;
-                        }
-                        else{
-                            temp_progress *= 0.9;
-                            temp_progress = Math.round(temp_progress);
-                        }
-    
-                        progress.push(temp_progress);
-
-                    }
-                    else{
-                        progress.push(0);
-                    }
-                }
-                }
-                if(grades.length > 0){
-                    average = total/grades.length;
+                if(user == 'admin'){
+                    res.redirect("/admin");
                 }
                 else{
-                    average = "-";
+                    let rawdata = fs.readFileSync('courses-info.json');
+                    let data = JSON.parse(rawdata);
+                    let courses = data["courses"];
+
+                    let rawdata2 = fs.readFileSync('courses-results.json');
+                    let temp_data2 = JSON.parse(rawdata2);
+                    let temp_userdata = temp_data2["users"][user];
+
+                    let rawdata3 = fs.readFileSync('questions.json');
+                    let questions = JSON.parse(rawdata3);
+
+                    let grades = [];
+                    let progress = [];
+                    let total = 0;
+                    let average;
+            
+                    for(let j = 0; j < courses.length;j++){
+                        if(temp_userdata == undefined){
+                            progress.push(0);
+                        }
+                        else{
+                        if(temp_userdata["course" + (j + 1)] != undefined){
+                            if(temp_userdata["course" + (j + 1)]["grade"] > 0){
+                                grades.push(temp_userdata["course" + (j + 1)]["grade"]);
+                                total += temp_userdata["course" + (j + 1)]["grade"];
+                            }
+                            let temp_progress = 0;
+                            if(temp_userdata["course" + (j + 1)]["questions"].length > 0){
+                                temp_progress += Math.round((temp_userdata["course" + (j + 1)]["questions"].length / questions["course" + (j + 1)].length) * 50);
+                            }
+        
+                            if(temp_userdata["course" + (j + 1)]["info"]){
+                                temp_progress += 25;
+                            }
+                            if(temp_userdata["course" + (j + 1)]["movie"]){
+                                temp_progress += 25;
+                            }
+        
+                            if(temp_userdata["course" + (j + 1)]["complete"]){
+                                temp_progress = 100;
+                            }
+                            else{
+                                temp_progress *= 0.9;
+                                temp_progress = Math.round(temp_progress);
+                            }
+        
+                            progress.push(temp_progress);
+
+                        }
+                        else{
+                            progress.push(0);
+                        }
+                    }
+                    }
+                    if(grades.length > 0){
+                        average = Math.round((total/grades.length) * 10)/10;
+                    }
+                    else{
+                        average = "-";
+                    }
+                    
+                    res.render(__dirname + "/public/dashboard.ejs", {courses: courses, grades: grades, average: average, progress: progress});
+                    break;
                 }
-                
-                res.render(__dirname + "/public/dashboard.ejs", {courses: courses, grades: grades, average: average, progress: progress});
-                break;
-            }
+            } 
             else if(i == loggedIn.length - 1){
                 res.redirect("/")
             }
@@ -151,7 +156,7 @@ app.get("/quiz/:course/:index", (req, res)=>{
                 let data = temp_data["course" + course];
 
                 if(data == undefined){
-                    res.send('<h1>Deze cursus is nof niet af/h1><a href="/dashboard">Terug naar dashboard</a>');
+                    res.send('<h1>Deze cursus is nog niet af</h1><a href="/dashboard">Terug naar dashboard</a>');
                     return;
                 }
 
@@ -458,7 +463,7 @@ app.post("/overview/:index", (req, res)=>{
                         points++;
                     }
                 }
-                let grade = points/length * 9 + 1;
+                let grade = Math.round((points/length * 9 + 1) * 10)/10;
                 data_results["users"][user]["course" + index]["complete"] = true;
                 data_results["users"][user]["course" + index]["grade"] = grade;
                 let json_data = JSON.stringify(data_results, null, 2);
@@ -554,9 +559,132 @@ app.get("/admin", (req, res)=>{
         for(let i = 0;i < loggedIn.length;i++){
             if(loggedIn[i]["IP"] == req.socket.remoteAddress){
                 if(loggedIn[i]["username"] == 'admin'){
-                    res.send('werkt')
+                    let rawdata = fs.readFileSync('courses-results.json');
+                    let data = JSON.parse(rawdata)["users"];
+
+                    let rawdata2 = fs.readFileSync('courses-info.json');
+                    let data2 = JSON.parse(rawdata2)["courses"];
+
+                    let users = [];
+                    for(let user in data){
+                        let grades = [];
+                        let total = 0;
+                        let amount = 0;
+                        let finished = 0;
+                        for(let courses in data[user]){
+                            grades.push(data[user][courses]["grade"]);
+                            if(data[user][courses]["grade"] > 0){
+                                total += data[user][courses]["grade"];
+                                amount++;
+                            }
+                            if(data[user][courses]["complete"] == true){
+                                finished++;
+                            }
+                        }
+                        let max;
+                        if(grades.length > 0){
+                            max = Math.max(...grades);
+                        }
+                        else{
+                            max = "-";
+                        }
+                        let average;
+                        if(amount > 0){
+                            average = total/amount;
+                        }
+                        else{
+                            average = "-"
+                        }
+                        users.push({"name": user, "grades": grades, "average": average, "max": max, "finished": finished, "total": data2.length});
+                    }
+                    all_averages = [];
+                    all_progress = [];
+                    for(let j = 0; j < users.length;j++){
+                        if(users[j]["average"] != '-'){
+                            all_averages.push(users[j]["average"]);
+                        }
+                        all_progress.push(users[j]["finished"]);
+                    }
+                    // console.log(Math.max(...all_averages));
+                    // console.log(Math.max(...all_progress));
+                    let highest_average = Math.max(...all_averages);
+                    let highest_progress = Math.max(...all_progress);
+
+                    let best_users_average = [];
+                    let best_users_progress = [];
+                    for(let j = 0;j < users.length;j++){
+                        if(users[j]["average"] == highest_average){
+                            best_users_average.push({"name": users[j]["name"], "score": users[j]["average"]});
+                        }
+                        if(users[j]["finished"] == highest_progress){
+                            best_users_progress.push({"name": users[j]["name"], "score": users[j]["finished"]});
+                        }
+                    }
+                    let average_winners = [];
+                    let average_winner;
+                    if(best_users_average.length > 1){
+                        for(let k = 0; k < best_users_average.length;k++){
+                            for(let j = 0; j < users.length;j++){
+                                if(best_users_average[k]["name"] == users[j]["name"]){
+                                    average_winners.push(users[j]["finished"])
+                                }
+                            }
+                        }
+                        let max = Math.max(...average_winners);
+
+                        average_winner= best_users_average[average_winners.indexOf(max)];
+                    }
+                    else{
+                        average_winner = best_users_average[0];
+                    }
+
+                    let progress_winners = [];
+                    let progress_winner;
+                    if(best_users_progress.length > 1){
+                        for(let k = 0; k < best_users_progress.length;k++){
+                            for(let j = 0; j < users.length;j++){
+                                if(best_users_progress[k]["name"] == users[j]["name"]){
+                                    progress_winners.push(users[j]["average"])
+                                }
+                            }
+                        }
+                        let max = Math.max(...progress_winners);
+
+                        progress_winner= best_users_progress[progress_winners.indexOf(max)];
+                    }
+                    else{
+                        progress_winner = best_users_progress[0];
+                    }
+
+                    let total = 0;
+                    let counter = 0;
+                    for(let j = 0; j < users.length;j++){
+                        if(users[j]["average"] != '-'){
+                            total+=users[j]["average"];
+                            counter++;
+                        }
+                    }
+                    let total_average = total/counter;
+
+                    let total2 = 0;
+                    let counter2 = 0;
+                    for(let j = 0; j < users.length;j++){
+                            total2+=users[j]["finished"];
+                            counter2++;
+                    }
+                    let total_progress = Math.round(total2/counter2 * 10)/10;
+
+                    console.log(total_average);
+                    console.log(total_progress);
+                    res.render(__dirname + "/public/admin.ejs", {users: users, best_average: average_winner, best_progress: progress_winner, total_average: total_average, total_progress: total_progress})
+
                 }
-                res.send("je hebt geen toegang tot deze pagina ga weg noob")
+                else{
+                    res.send("je hebt geen toegang tot deze pagina ga weg noob")
+                }
+            }
+            else if(i == loggedIn.length - 1){
+                res.redirect('/')
             }
         }
     }   

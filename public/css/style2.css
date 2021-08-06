@@ -5,10 +5,13 @@ body{
   overflow-y: hidden;
 }
 
-.img {
-position: absolute;
-left: 50px;
-top: -150px;
+.img img{
+  position: absolute;
+  left: 50%;
+  top: -15vh;
+  transform: translate(-50%, 0);
+  height: 15vh;
+  width: auto;
 }
 
 #box4{
@@ -16,7 +19,7 @@ top: -150px;
   width: 400px;
   height: 80vh;
   left: 50%;
-  top: 70vh;
+  top: 60vh;
   transform: translate(-50%, -50%);
   background: white;
   border-radius: 50px;
@@ -60,7 +63,7 @@ top: -150px;
 }
 
 #box4 input{
-  width: 70%;
+  width: 60%;
   height: 30px;
   position: relative;
   left: 40px;
@@ -69,6 +72,18 @@ top: -150px;
   /* border-bottom: solid 1px rgba(0, 0, 0, 0.2); */
   outline:none;
   background: none;
+}
+
+#box4 #wachtwoordtext{
+  position: absolute;
+  left: 380px;
+  top: 330px;
+  font-size: 13px;
+}
+#box4 #showpassword{
+  position: absolute;
+  left: 230px;
+  top: 340px;
 }
 
 #box4 hr{

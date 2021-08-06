@@ -33,34 +33,129 @@
     ],
     "course1": [
         {
-            "question": "Wie is het beste overwatch karakter?",
-            "answers": ["Wrecking ball", "Zarya", "Hamster", "Pot"],
+            "question": "Wat is een biopt?",
+            "answers": ["het afnemen van een bloedmonster voor microscopisch onderzoek", "het afnemen van een stukje weefsel voor microscopisch onderzoek", "Het afnemen van een stukje huid voor alleen verwijdering", "Het opnemen van een weefsel monster door middel van chirurgie"],
+            "correct": 1
+        }
+    ],
+    "course3": [
+        {
+            "question": "Wat is het belangrijkste bij een proktologisch onderzoek",
+            "answers": ["Juist afnemen van een kweek", "Patient gerust stellen", "Zo snel mogelijk het monster versturen", "Werken met beschermende kleding"],
+            "correct": 0
+        }
+        
+    ],
+    "course4": [
+        {
+            "question": "Waarvoor wordt waterstofperoxide gebruikt?",
+            "answers": ["Voor het zichtbaar maken van een fistelgang", "Voor het schoonmaken", "Voor verdoving", "Voor het reinigen van een fistelgang"],
+            "correct": 0
+        },
+        {
+            "question": "Wat zijn de complicaties van het inspuiten van waterstofperoxide?",
+            "answers": ["een lichte vorm van emesis", "intoxicatie ", "Er zijn (vrijwel) geen complicaties", "verteerselen kunnen parenteraal door het lichaam verspreiden"],
             "correct": 2
         },
         {
-            "question": "Met welk karakter kan je altijd een 1v1 van JB winnen?",
-            "answers": ["Wrecking ball?", "Mercy", "Mercy", "Geen van bovenstaande"],
+            "question": "Hoeveel cc H202, water en lucht wordt opgezogen?",
+            "answers": ["8cc", "2cc", "er wordt geen lucht opgezogen", "10cc"],
             "correct": 3
         },
         {
-            "question": "Wie zuigt het meeste?",
-            "answers": ["ktp-05", "sansebastiaan", "Maupicolt", "mattydoel"],
-            "correct": 3
-        },
-        {
-            "question": "Wat is de meest vervloekte map?",
-            "answers": ["Lettuce land", "Pickle playground", "Ayutheia", "Tomato town"],
-            "correct": 3
-        },
-        {
-            "question": "Wie is Monke?",
-            "answers": ["Wrecking ball", "Hamster", "Cavia", "Winston"],
-            "correct": 3
-        },
-        {
-            "question": "Waar of niet waar? Ktp-05 is level 25",
-            "answers": ["Waar", "Niet waar"],
+            "question": "Waarom wordt bij het klaarmaken van de H202 2cc lucht opgezogen?",
+            "answers": ["Waterstof is een oxidator dus heeft zuurstof nodig", "Waterstofperoxide kan zich uitzetten", "Om het verschil in druk te compenseren", "Door verschil in temperatuur"],
             "correct": 1
-        }  
+        }
+    ],
+    "course5": [
+        {
+            "question": "Hoe vaak wordt de temperatuur gemeten?",
+            "answers": ["Elk half uur", "Jaarlijks", "Wekelijks", "Dagelijks"],
+            "correct": 2
+        },
+        {
+            "question": "Bij welke twee temperaturen zal de datalogger alarmeren?",
+            "answers": ["Min temp: 2⁰C, Max temp: 7⁰C", "Min temp: 0⁰C, Max temp: 5⁰C", "Min temp: 8⁰C, Max temp: 12⁰C", "Min temp: -2⁰C, Max temp: 7⁰C"],
+            "correct": 0
+        },
+        {
+            "question": "Welke stappen zijn vereist als de temperatuur afwijkt?",
+            "answers": ["'turbostand' activeren op koelkast", "Niks, hij herstelt vanzelf", "Een melding ter verbetering invullen", "Een MTV en een actie zoals dubbelcheck temp"],
+            "correct": 3
+        }
+        
+    ],
+    
+    "course6": [
+        {
+            "question": "Welke 3 dingen worden gecontroleerd bij het vierogensysteem?",
+            "answers": ["Expiratiedatum, hoeveelheid en het juiste merk", "Expiratiedatum, product en hoeveelheid", "Product, hoeveelheid en het juiste merk"],
+            "correct": 1
+        },
+        {
+            "question": "Waarom wordt gebruik gemaakt van het vierogensysteem?",
+            "answers": ["Om de veiligheid van patiënten te waarborgen", "Om zo efficient mogelijk te werken", "Zodat er bespaard kan worden", "Omdat dat schriftelijk is opgesteld"],
+            "correct": 0
+        },
+        {
+            "question": "Wat gebeurt er met de ampul nadat de gehele inhoud is opgezogen?",
+            "answers": ["De ampul mag gewoon in de reguliere prullenbak", "De ampul wordt hergebruikt na een snelle reiniging", "De ampul wordt in de naaldencontainer gedeponeerd", "De ampul moet grondig gereinigd worden voor re-use"],
+            "correct": 2
+        },
+        {
+            "question": "Hoeveel cc Natrium Bicarbonaat 8,4% wordt opgetrokken?",
+            "answers": ["0,1 cc", "2 cc", "0,2 mL"],
+            "correct": 2
+        },
+        {
+            "question": "Wie paraferen het label dat op de klaargemaakte spuit met verdoving wordt geplakt?",
+            "answers": ["2 medisch assistentes of 1 medisch assistente en 1 medisch specialist", "De twee personen die de verdoving hebben klaargemaakt", "De arts"],
+            "correct": 1
+        }
+        
+    ],
+    
+    "course7": [
+        {
+            "question": "Zet een proctoscoop in elkaar en laat dit controleren door je buddy (na controle pas antwoord invullen)",
+            "answers": ["Juist in elkaar gezet", "Onjuist in elkaar gezet"],
+            "correct": 0
+        },
+        {
+            "question": "Wat doe je na het onderzoek met de gebruikte materialen?",
+            "answers": ["Alle materialen mogen achteraf in de prullenbak gedeponeerd worden", "Zoveel mogelijk materialen hergebruiken na reiniging volgens protocol", "disposable materiaal deponeren in de prullenbak en instrumentarium in de gootsteen leggen"],
+            "correct": 2
+        }
+        
+    ],
+    "course8": [
+        {
+            "question": "Wat is het belangrijkste bij het afnemen van een kweek/soa test?",
+            "answers": ["De procedure van te voren goed doornemen en voorbereiden ", "De patient op de hoogte houden tijdens de procedure", "Dat er altijd een medische assistent aanwezig is"],
+            "correct": 0
+        }
+        
+    ],
+    "course9": [
+        {
+            "question": "Hoe vindt een besmetting met legionella plaats? ",
+            "answers": ["Door het aanraken van een vloeistof waarin de bacterie zich bevindt. ", "Door het inademen van waternevel waarin de bacterie zich bevindt.", "Door middel van het oraal binnenkrijgen van besmet voedsel/drinken"],
+            "correct": 1
+        },
+        {
+            "question": "Hoe wordt de kans op legionellabesmetting in de kliniek zo laag mogelijk gehouden?",
+            "answers": ["Wekelijks alle kranen 5 min spoelen met heet water en een maandelijkse preventie.", "Wekelijks alle kranen laten reinigen met een 0.67M alcohol oplossing ", "Alle kranen dagelijks met (zo koud mogelijk) water voor 10-15 minuten laten doorstromen", "Een maandelijkse preventie controle is goed genoeg"],
+            "correct": 0
+        }
+        
+    ],
+    "course10": [
+        {
+            "question": "Wat is het belangrijkste bij het afnemen van een kweek/soa test?",
+            "answers": ["De procedure van te voren goed doornemen en voorbereiden ", "De patient op de hoogte houden tijdens de procedure", "Dat er altijd een medische assistent aanwezig is"],
+            "correct": 0
+        }
+        
     ]
 }

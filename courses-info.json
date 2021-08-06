@@ -2,163 +2,204 @@
     "courses": [
         {
             "id": 1,
-            "name": "Kweek/Biopt",
+            "name": "Biopt", 
             "info": "Een biopt is het afnemen van een stukje weefsel voor microscopisch onderzoek",
-            "img": "https://www.huidziekten.nl/afbeeldingen/illustraties/biopsie/huidbiopt-6.jpg",
-            "pdf": "http://www.africau.edu/images/default/sample.pdf",
-            "video": "jrTXBFcvoMQ"
-        },
-        {
+            "img": "https://drive.google.com/thumbnail?id=1KX2ZgxBqOyz5VMfILYSXEBMNMbnLdxfp",
+            "pdf": "https://drive.google.com/file/d/16ZY48FTHUzlPcUgChO-P2EQEJnOyOEJg/preview",
+            "summary":  "https://drive.google.com/file/d/1GB7HeoRHN-24M5pnXaEy5e0E19TGTpPy/preview",
+            "video": "yAthh9f3OTo"
+        },  
+        { 
             "id": 2,
-            "name": "RBL",
+            "name": "RBL", 
             "info": "Rubberbandligering (RBL) Bij RBL wordt met behulp van een proctoscoop weefsel opgezogen.",
             "img": "https://huidarts.com/wp-content/uploads/2015/06/rubber-band-ligation.jpg",
             "pdf": "https://drive.google.com/file/d/17eyNYNsAfvSnG08z9wYsRJnDew-z57HZ/preview",
+            "summary":  "https://drive.google.com/file/d/1hUHWORtzzlC4twXdhjb3Yj6nT7A1LcYG/preview",
             "video": "Ibe-FsKYz7k"
         },
         {
             "id": 3,
-            "name": "Triageren, CTG-check",
-            "info": "Een CTG, is een onderzoek waarbij een apparaatje de hartslag van je ongeboren kindje meet (cardio).",
-            "img": "https://img.24baby.nl/2018/10/CTG.jpg",
-            "pdf": "http://www.africau.edu/images/default/sample.pdf",
-            "video": "E4h0Q3F3Cng"
+            "name": "Procto onderzoek", 
+            "info": "Met een proctologisch onderzoek onderzoekt aandoeningen van de anus",
+            "img": "https://microbiologie.nl/images/vademecum/N.jpg",
+            "pdf": "https://drive.google.com/file/d/1B5H1YyO8H6G3CMwAikwdzwqYaRbs5gzM/preview",
+            "summary":  "",
+            "video": "URjI8AYNqiM"
         },
         {
             "id": 4,
-            "name": "Procto onderzoek",
-            "info": "Met een proctologisch onderzoek onderzoekt aandoeningen van de anus",
-            "img": "https://lh3.googleusercontent.com/proxy/bvkKyezGHRB00pHa9gdn4Jf_zX-aBfpO0codOTh35CFzug0wgq7QaQIbVIWqlxcUFdXv_Kym2v1QCDurFoe6sl9p_IyaCvA9d6g_zwpvUj7ohlTSjmeycYKF4w-fLw58uzRg",
-            "pdf": "http://www.africau.edu/images/default/sample.pdf",
-            "video": "E4h0Q3F3Cng"
+            "name": "H202 klaarmaken", 
+            "info": "Waterstofperoxide is een gevaarlijke stof, maar is belangrijk voor het schoonmaken van bepaalde objecten",
+            "img": "https://www.rtlnieuws.nl/sites/default/files/styles/staand/public/content/images/2020/10/09/WhatsApp%20Image%202020-10-09%20at%2010.41.56.jpeg?h=02dc0312&itok=W7lMNPtp",
+            "pdf": "https://drive.google.com/file/d/1TVXg6fgSSbnl2RcnTOxTEcIaMKPL2BJh/preview",
+            "summary":  "https://drive.google.com/file/d/1uEtYJqutKPsM-2uQTrN81VU5ZA_v1A2T/preview",
+            "video": "URjI8AYNqiM"
         },
         {
-            "id": 5,
-            "name": "Botox",
-            "info": "Wanneer de anale fissuur niet  op de crème reageert, kan een botox-injectie verlichting geven.",
-            "img": "https://colorectalsurgeonssydney.com.au/sites/default/files/inline-images/botulin-toxin-injection_e.jpg",
-            "pdf": "http://www.africau.edu/images/default/sample.pdf",
-            "video": "E4h0Q3F3Cng"
+            "id": 5, 
+            "name": "Koelkasttemperatuur meten",
+            "info": "",
+            "img": "https://eenvandaag.assets.avrotros.nl/user_upload/Medijnen-koelkast-niet-goed-bewaard.jpg",
+            "pdf": "https://drive.google.com/file/d/1fwAu0NgzvIiaOWBoWHEg_hnNAKBlJbIR/preview",
+            "summary":  "https://drive.google.com/file/d/13dLilfLIEAmvL9qJP9E4jQWHIjMvLH1L/preview",
+            "video": "URjI8AYNqiM"
         },
         {
             "id": 6,
-            "name": "Sclerotherapie",
-            "info": "Sclerotherapie is de behandeling van spataders door er een irriterende stof in te spuiten. ",
-            "img": "https://vercaeren.eu/assets/images/sclero.jpg",
-            "pdf": "http://www.africau.edu/images/default/sample.pdf",
-            "video": "E4h0Q3F3Cng"
-        },
-        {   
-            "id": 7,
-            "name": "Assisteren bij arts achter PC",
-            "info": "Het assisteren bij een arts achter een PC",
-            "img": "https://oorno.nl/wp-content/uploads/2020/11/Treant-cardiologie.jpg",
-            "pdf": "http://www.africau.edu/images/default/sample.pdf",
-            "video": "E4h0Q3F3Cng"
-        },
-        {
-            "id": 8,
-            "name": "Nabellen van pt na POK/OK",
-            "info": "Na een operatie nagebeld worden",
-            "img": "https://www.lhv.nl/wp-content/uploads/2021/03/LHV-SunhusMakkum-HR-062.jpg",
-            "pdf": "http://www.africau.edu/images/default/sample.pdf",
-            "video": "E4h0Q3F3Cng"
-        },
-        {
-            "id": 9,
-            "name": "Aanvullen en controleren van de kamers",
-            "info": "",
-            "img": "https://werkenbijmartiniziekenhuis.nl/media/1093/solo-6-okinstrumenten-operatie-ass.jpg?anchor=center&mode=crop&width=1120&heightratio=1&format=jpg&slimmage=true&quality=80&rnd=132164835980000000",
-            "pdf": "http://www.africau.edu/images/default/sample.pdf",
-            "video": "E4h0Q3F3Cng"
-        },
-        {
-            "id": 10,
-            "name": "H202 klaarmaken",
-            "info": "Waterstofperoxide is een gevaarlijke stof, maar is belangrijk voor het schoonmaken van bepaalde objecten",
-            "img": "https://www.rtlnieuws.nl/sites/default/files/styles/staand/public/content/images/2020/10/09/WhatsApp%20Image%202020-10-09%20at%2010.41.56.jpeg?h=02dc0312&itok=W7lMNPtp",
-            "pdf": "http://www.africau.edu/images/default/sample.pdf",
-            "video": "E4h0Q3F3Cng"
-        },
-        {
-            "id": 11,
-            "name": "Koelkasttemperatuur meten, Legionella preventie",
-            "info": "",
-            "img": "https://eenvandaag.assets.avrotros.nl/user_upload/Medijnen-koelkast-niet-goed-bewaard.jpg",
-            "pdf": "http://www.africau.edu/images/default/sample.pdf",
-            "video": "E4h0Q3F3Cng"
-        },
-        {
-            "id": 12,
-            "name": "Verdoving maken",
+            "name": "Verdoving maken", 
             "info": "Voor bepaalde operaties is verdoving noodzakelijk en dient dus van te voren klaargemaakt te worden.",
             "img": "https://www.isala.nl/media/25475/preoperatief_onderzoek_anesthesiologie_1.jpg?center=0.42%2C0.5333&mode=crop&width=400&height=267&quality=80&token=QQ27sFmyXF",
-            "pdf": "http://www.africau.edu/images/default/sample.pdf",
-            "video": "E4h0Q3F3Cng"
+            "pdf": "https://drive.google.com/file/d/1AGhs_EUSppXU3KiEpiJmHEtGQJHtwAll/preview",
+            "summary":  "https://drive.google.com/file/d/1BkuCEY-h0qCfZQ48ms_XOQPBJ47NC6E2/preview",
+            "video": "URjI8AYNqiM"
         },
         {
-            "id": 13,
-            "name": "Opstarten echo en 60 cc echogel ",
-            "info": "",
-            "img": "https://www.treant.nl/uploads/bestanden/73ac5275-d249-510d-9e66-1c571c000052/3048197408/190123%20Jan%20Willen%20brakel.jpg",
-            "pdf": "http://www.africau.edu/images/default/sample.pdf",
-            "video": "E4h0Q3F3Cng"
-        },
-        {
-            "id": 14,
-            "name": "Schoonmaken met sluiting: alcohol, allesreiniger en chloor",
-            "info": "",
-            "img": "https://www.etz.nl/ETZWebsite/files/16/16d14048-65e9-4be4-9ad4-6a90ed6608e5.jpg",
-            "pdf": "http://www.africau.edu/images/default/sample.pdf",
-            "video": "E4h0Q3F3Cng"
-        },
-        {
-            "id": 15,
-            "name": "Periodieke schoonmaak",
-            "info": "schoonmaak van praktijkkamers ",
-            "img": "https://bromclean.nl/wp-content/uploads/2017/10/Schoonmaker-in-ziekenhuis.jpg",
-            "pdf": "http://www.africau.edu/images/default/sample.pdf",
-            "video": "E4h0Q3F3Cng"
-        },
-        {
-            "id": 16,
-            "name": "Werkkar schoonmaken en opdekken",
-            "info": "",
-            "img": "https://vercaeren.eu/assets/images/sclero.jpg",
-            "pdf": "http://www.africau.edu/images/default/sample.pdf",
-            "video": "E4h0Q3F3Cng"
-        },
-        {
-            "id": 17,
-            "name": "RR",
-            "info": "Riva-​Rocci meting is een bloeddruk meting met een band",
-            "img": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/Sphygmomanometer.jpg/260px-Sphygmomanometer.jpg",
-            "pdf": "http://www.africau.edu/images/default/sample.pdf",
-            "video": "E4h0Q3F3Cng"
-        },
-        {
-            "id": 18,
+            "id": 7, 
             "name": "Proctoscoop: in/uit elkaar, schoonmaken",
             "info": "",
             "img": "https://dispomedical.nl/img/responsive/module/product_img/Proctoscoop_m.jpg",
-            "pdf": "http://www.africau.edu/images/default/sample.pdf",
-            "video": "E4h0Q3F3Cng"
+            "pdf": "https://drive.google.com/file/d/1igxaBH_nBjx1dHOuZGeS59JHEZlG7GRm/preview",
+            "summary":  "https://drive.google.com/file/d/1BfwPhs0i_Y6F8AjfI2NEpck1-GvJfUsy/preview",
+            "video": "URjI8AYNqiM"
+        },
+        {
+            "id": 8,                         
+            "name": "Kweek/Soa Test",  
+            "info": "Van een bepaald materiaal kan een kweek worden gezet om een bepaalde infectie aan te tonen",
+            "img": "https://cdn.webshopapp.com/shops/204470/files/273125290/650x650x1/algemene-kweek-bacterien-in-ontlasting.jpg",
+            "pdf": "https://drive.google.com/file/d/16ZY48FTHUzlPcUgChO-P2EQEJnOyOEJg/preview",
+            "summary": "https://drive.google.com/file/d/1T6Z2hJzf2snES2yNogyCq3N-j2ga-nwb/preview",
+            "video": "3JUU_2emZNk"
+        },
+        {
+            "id": 9,                         
+            "name": "Legionella preventie",  
+            "info": "",
+            "img": "https://kenuwvluchtweg.nl/wp-content/uploads/2020/01/Legionella-preventie-205.jpg",
+            "pdf": "https://drive.google.com/file/d/1wHLErZkHajsF0S_RriD1-x4x5xYxoSfD/preview",
+            "summary": "https://drive.google.com/file/d/1hsVKvgUECDlPGUhq0ofGQcdvFrGQS_oT/preview",
+            "video": "URjI8AYNqiM"
+        },
+        {
+            "id": 10,
+            "name": "Triageren, CTG-check",
+            "info": "Een CTG, is een onderzoek waarbij een apparaatje de hartslag van je ongeboren kindje meet (cardio).",
+            "img": "https://img.24baby.nl/2018/10/CTG.jpg",
+            "pdf": "https://drive.google.com/file/d/16ZY48FTHUzlPcUgChO-P2EQEJnOyOEJg/preview",
+            "summary":  "https://drive.google.com/file/d/16ZY48FTHUzlPcUgChO-P2EQEJnOyOEJg/preview",
+            "video": "URjI8AYNqiM"
+        },
+        {
+            "id": 11,
+            "name": "Botox",
+            "info": "Wanneer de anale fissuur niet  op de crème reageert, kan een botox-injectie verlichting geven.",
+            "img": "https://colorectalsurgeonssydney.com.au/sites/default/files/inline-images/botulin-toxin-injection_e.jpg",
+            "pdf": "https://drive.google.com/file/d/16ZY48FTHUzlPcUgChO-P2EQEJnOyOEJg/preview",
+            "summary":  "https://drive.google.com/file/d/16ZY48FTHUzlPcUgChO-P2EQEJnOyOEJg/preview",
+            "video": "URjI8AYNqiM"
+        },
+        {
+            "id": 12,
+            "name": "Sclerotherapie",
+            "info": "Sclerotherapie is de behandeling van spataders door er een irriterende stof in te spuiten. ",
+            "img": "https://vercaeren.eu/assets/images/sclero.jpg",
+            "pdf": "https://drive.google.com/file/d/16ZY48FTHUzlPcUgChO-P2EQEJnOyOEJg/preview",
+            "summary":  "https://drive.google.com/file/d/16ZY48FTHUzlPcUgChO-P2EQEJnOyOEJg/preview",
+            "video": "URjI8AYNqiM"
+        },
+        {   
+            "id": 13,
+            "name": "Assisteren bij arts achter PC",
+            "info": "Het assisteren bij een arts achter een PC",
+            "img": "https://oorno.nl/wp-content/uploads/2020/11/Treant-cardiologie.jpg",
+            "pdf": "https://drive.google.com/file/d/16ZY48FTHUzlPcUgChO-P2EQEJnOyOEJg/preview",
+            "summary":  "https://drive.google.com/file/d/16ZY48FTHUzlPcUgChO-P2EQEJnOyOEJg/preview",
+            "video": "URjI8AYNqiM"
+        },
+        {
+            "id": 14,
+            "name": "Nabellen van pt na POK/OK",
+            "info": "Na een operatie nagebeld worden",
+            "img": "https://www.lhv.nl/wp-content/uploads/2021/03/LHV-SunhusMakkum-HR-062.jpg",
+            "pdf": "https://drive.google.com/file/d/16ZY48FTHUzlPcUgChO-P2EQEJnOyOEJg/preview",
+            "summary":  "https://drive.google.com/file/d/16ZY48FTHUzlPcUgChO-P2EQEJnOyOEJg/preview",
+            "video": "URjI8AYNqiM"
+        },
+        {
+            "id": 15,
+            "name": "Aanvullen en controleren van de kamers",
+            "info": "",
+            "img": "https://werkenbijmartiniziekenhuis.nl/media/1093/solo-6-okinstrumenten-operatie-ass.jpg?anchor=center&mode=crop&width=1120&heightratio=1&format=jpg&slimmage=true&quality=80&rnd=132164835980000000",
+            "pdf": "https://drive.google.com/file/d/16ZY48FTHUzlPcUgChO-P2EQEJnOyOEJg/preview",
+            "summary":  "https://drive.google.com/file/d/16ZY48FTHUzlPcUgChO-P2EQEJnOyOEJg/preview",
+            "video": "URjI8AYNqiM"
+        },
+        {
+            "id": 16,
+            "name": "Opstarten echo en 60 cc echogel ",
+            "info": "",
+            "img": "https://www.treant.nl/uploads/bestanden/73ac5275-d249-510d-9e66-1c571c000052/3048197408/190123%20Jan%20Willen%20brakel.jpg",
+            "pdf": "https://drive.google.com/file/d/16ZY48FTHUzlPcUgChO-P2EQEJnOyOEJg/preview",
+            "summary":  "https://drive.google.com/file/d/16ZY48FTHUzlPcUgChO-P2EQEJnOyOEJg/preview",
+            "video": "URjI8AYNqiM"
+        },
+        {
+            "id": 17,
+            "name": "Schoonmaken met sluiting: alcohol, allesreiniger en chloor",
+            "info": "",
+            "img": "https://www.etz.nl/ETZWebsite/files/16/16d14048-65e9-4be4-9ad4-6a90ed6608e5.jpg",
+            "pdf": "https://drive.google.com/file/d/16ZY48FTHUzlPcUgChO-P2EQEJnOyOEJg/preview",
+            "summary":  "https://drive.google.com/file/d/16ZY48FTHUzlPcUgChO-P2EQEJnOyOEJg/preview",
+            "video": "URjI8AYNqiM"
+        },
+        {
+            "id": 18,
+            "name": "Periodieke schoonmaak",
+            "info": "schoonmaak van praktijkkamers ",
+            "img": "https://bromclean.nl/wp-content/uploads/2017/10/Schoonmaker-in-ziekenhuis.jpg",
+            "pdf": "https://drive.google.com/file/d/16ZY48FTHUzlPcUgChO-P2EQEJnOyOEJg/preview",
+            "summary":  "https://drive.google.com/file/d/16ZY48FTHUzlPcUgChO-P2EQEJnOyOEJg/preview",
+            "video": "URjI8AYNqiM"
         },
         {
             "id": 19,
-            "name": "Rectovision: gebruik, in/uit elkaar, schoonmaak",
+            "name": "Werkkar schoonmaken en opdekken",
             "info": "",
-            "img": "https://www.karlstorz.com/static/file_pics/pic_editorial/en/HM_PRO/3575890_rdax_80.jpg",
-            "pdf": "http://www.africau.edu/images/default/sample.pdf",
-            "video": "E4h0Q3F3Cng"
+            "img": "https://vercaeren.eu/assets/images/sclero.jpg",
+            "pdf": "https://drive.google.com/file/d/16ZY48FTHUzlPcUgChO-P2EQEJnOyOEJg/preview",
+            "summary":  "https://drive.google.com/file/d/16ZY48FTHUzlPcUgChO-P2EQEJnOyOEJg/preview",
+            "video": "URjI8AYNqiM"
         },
         {
             "id": 20,
+            "name": "RR",
+            "info": "Riva-​Rocci meting is een bloeddruk meting met een band",
+            "img": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/Sphygmomanometer.jpg/260px-Sphygmomanometer.jpg",
+            "pdf": "https://drive.google.com/file/d/16ZY48FTHUzlPcUgChO-P2EQEJnOyOEJg/preview",
+            "summary":  "https://drive.google.com/file/d/16ZY48FTHUzlPcUgChO-P2EQEJnOyOEJg/preview",
+            "video": "URjI8AYNqiM"
+        },
+        
+        {
+            "id": 21,
+            "name": "Rectovision: gebruik, in/uit elkaar, schoonmaak",
+            "info": "",
+            "img": "https://www.karlstorz.com/static/file_pics/pic_editorial/en/HM_PRO/3575890_rdax_80.jpg",
+            "pdf": "https://drive.google.com/file/d/16ZY48FTHUzlPcUgChO-P2EQEJnOyOEJg/preview",
+            "summary":  "https://drive.google.com/file/d/16ZY48FTHUzlPcUgChO-P2EQEJnOyOEJg/preview",
+            "video": "URjI8AYNqiM"
+        },
+        {
+            "id": 22,
             "name": "Depomedrol (steriel)",
             "info": "Inbrengen van Depomedrol, dat remt lokale ontstekingsverschijnselen  en overgevoeligheidsreacties.",
             "img": "https://www.pfizer.nl/sites/default/files/styles/480x365/public/2018-02/DEPO-MEDROL%20pack_0.jpg?itok=g-A7KmgJ",
             "pdf": "http://www.africau.edu/images/default/sample.pdf",
-            "video": "E4h0Q3F3Cng"
+            "summary":  "https://drive.google.com/file/d/16ZY48FTHUzlPcUgChO-P2EQEJnOyOEJg/preview",
+            "video": "URjI8AYNqiM"
         }
+        
     ]
 }
+

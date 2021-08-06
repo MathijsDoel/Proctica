@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/adminstyle.css">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
+    <title>Proctos Academy</title>
+    <link rel="icon" type="image/png" href="https://proctoskliniek.nl/wp-content/themes/understrap-child/inc/media/logo_sticky2.png "/>
+</head>
+<body>
+    <div id="sidebalk">
+        <h1>Admin tools</h1>
+        <a href="#1"><div class="title"> 
+            <svg width="60" height="60" viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M48.75 56.25H45V50.625C44.997 48.1395 44.0083 45.7567 42.2508 43.9992C40.4933 42.2417 38.1105 41.253 35.625 41.25H24.375C21.8895 41.253 19.5067 42.2417 17.7492 43.9992C15.9917 45.7567 15.003 48.1395 15 50.625V56.25H11.25V50.625C11.254 47.1453 12.6381 43.8092 15.0986 41.3486C17.5592 38.8881 20.8953 37.504 24.375 37.5H35.625C39.1047 37.504 42.4408 38.8881 44.9014 41.3486C47.3619 43.8092 48.746 47.1453 48.75 50.625V56.25Z" fill="white"/>
+                <path d="M9.375 11.25C8.87772 11.25 8.40081 11.4475 8.04918 11.7992C7.69754 12.1508 7.5 12.6277 7.5 13.125V30H11.25V13.125C11.25 12.6277 11.0525 12.1508 10.7008 11.7992C10.3492 11.4475 9.87228 11.25 9.375 11.25Z" fill="white"/>
+                <path d="M7.5 3.75V7.5H16.875V20.625C16.875 24.106 18.2578 27.4444 20.7192 29.9058C23.1806 32.3672 26.519 33.75 30 33.75C33.481 33.75 36.8194 32.3672 39.2808 29.9058C41.7422 27.4444 43.125 24.106 43.125 20.625V7.5H52.5V3.75H7.5ZM20.625 7.5H39.375V13.125H20.625V7.5ZM30 30C27.5136 30 25.129 29.0123 23.3709 27.2541C21.6127 25.496 20.625 23.1114 20.625 20.625V16.875H39.375V20.625C39.375 23.1114 38.3873 25.496 36.6291 27.2541C34.871 29.0123 32.4864 30 30 30Z" fill="white"/>
+            </svg>  
+            <p>Users</p>
+        </div></a>
+        <a href="#2"><div class="title">
+            <svg width="60" height="60" viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M43.125 41.0911L30 48.4739L16.875 41.0911V33.2909L13.125 31.2075V43.2842L30 52.7764L46.875 43.2842V31.2075L43.125 33.2909V41.0911V41.0911Z" fill="white"/>
+                <path d="M30 5.3877L3.75 18.9988V22.2489L30 36.8318L52.5 24.3322V34.6873H56.25V18.9988L30 5.3877ZM48.75 22.1257L45 24.2089L30 32.5427L15 24.2089L11.25 22.1257L8.6509 20.6817L30 9.61184L51.3491 20.6817L48.75 22.1257Z" fill="white"/>
+            </svg>
+            <p>Courses</p>
+        </div></a>
+    </div>
+    <div id="allusers">
+        <h2>Alle gebruikers stats</h2>
+        <h4>Gemiddeld cijfer: <%=total_average%> </h4>
+        <h4>Gemiddeld progressie: <%=total_progress%> </h4>
+    </div>
+    <div id="bestuser">
+        <h2>Beste gebruikers</h2>
+        <h4>Hoogste gemiddelde: <%=best_average["name"]%> </h4>
+        <h5>Met een gemiddelde van: <%=best_average["score"]%></h5>
+        <h4>Hoogste progressie: <%=best_progress["name"]%></h4>
+        <h5>Met een progressie van: <%=best_progress["score"]%>/<%=users[0]['total']%></h5>
+    </div>
+    <div id="users">
+    <%for(let i = 0; i < users.length;i++){%>
+        <div id="box1">
+            <div id="whitebackground"><h3><%=users[i]['name']%></h3></div>
+            <div id="info">
+            <h4>Gemiddeld cijfer: <%=users[i]['average']%></h4>
+            <h4>Hoogste cijfer: <%=users[i]['max']%></h4>
+            <h4>Afgeronde lessen: <%=users[i]['finished']%>/<%=users[i]['total']%></h4>
+            </div>
+        </div>
+    <%}%>
+    </div>  
+</body>
+</html>

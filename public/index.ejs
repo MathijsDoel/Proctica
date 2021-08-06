@@ -22,6 +22,8 @@
             <input type="text" name="username" id="Gebruikersnaam" placeholder="Type hier uw gebruikersnaam">
             <hr> 
             <p>Wachtwoord</p>
+            <input type="checkbox" id="showpassword" onclick="change()">
+            <p id="wachtwoordtext">Laat wachtwoord zien</p>
             <svg width="37" height="37" viewBox="0 0 37 37" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M29.2917 15.4166H7.70833C6.00546 15.4166 4.625 16.7971 4.625 18.5V30.8333C4.625 32.5362 6.00546 33.9166 7.70833 33.9166H29.2917C30.9945 33.9166 32.375 32.5362 32.375 30.8333V18.5C32.375 16.7971 30.9945 15.4166 29.2917 15.4166Z" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                 <path d="M9.25 15.4166V7.70831C9.25 6.48169 9.73728 5.3053 10.6046 4.43794C11.472 3.57059 12.6484 3.08331 13.875 3.08331H23.125C24.3516 3.08331 25.528 3.57059 26.3954 4.43794C27.2627 5.3053 27.75 6.48169 27.75 7.70831V9.24998" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
@@ -32,5 +34,18 @@
         <span><%=error%></span>
         </form>
     </div>
+    <script>
+        function change(){
+            let x = document.getElementById("Wachtwoord");
+            let y = document.getElementById("wachtwoordtext");
+            if (x.type === "password") {
+                x.type = "text";
+                y.innerHTML = "Verberg wachtwoord";
+            } else {
+                x.type = "password";
+                y.innerHTML = "Laat wachtwoord zien";
+            }
+        }
+    </script>
 </body>
 </html>
