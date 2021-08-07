@@ -14,7 +14,7 @@
 <body>
     <div class="titel">
         <h4>Dashboard</h4>
-        <p>Proktos Cursussen</p>
+        <p>Proctos Cursussen</p>
     </div>
     <div id="sidebox">
         <h3>Proctos Academy</h3>
@@ -41,16 +41,15 @@
             <img src="<%=courses[i]["img"]%>" alt="botox">
             <h3><%=courses[i]["name"]%></h3>
             <p><%=courses[i]["info"]%></p>
-            <div id="empty"><div id=<%=abc[i]%>></div></div>
-            <span><%=progress[i]%>%</span>
-            <div class="sorts">
               <ul>
                   <li> <a href="/info/<%=courses[i]["id"]%>">Theorie</a></li>
                   <li> <a href="/movie/<%=courses[i]["id"]%>">Film</a></li>
+                  <li> <a href="/summary/<%=courses[i]["id"]%>">Samenvatting</a></li>
                   <li> <a href="/quiz/<%=courses[i]["id"]%>/0">Quiz</a></li>
                 
                 </ul>  
-            </div>
+                <div id="empty"><div id=<%=abc[i]%>></div></div>
+                <span><%=progress[i]%>%</span>
         </div>
         <style>
             #<%=abc[i]%>{

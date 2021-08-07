@@ -161,7 +161,7 @@ a{
 
 #courses .course{
     width: 200px;
-    height: 300px;
+    height: 350px;
     background-color: white;
     border-radius: 30px;
     margin-left: 34px;
@@ -178,12 +178,19 @@ a{
 }
 
 #courses .course h3{
-    margin-left: 10px;
+    position: relative;
+    left: 10px;
+    font-size: 15px;
+    height: 40px;
 }
 
 #courses .course p{
-    margin-left: 10px;
+    position: relative;
+    left: 10px;
+    top: 0px;
     font-size: 10px;
+    max-width: 90%;
+    height: 50px;
 }
 
 #courses .course #empty{
@@ -191,9 +198,9 @@ a{
     height: 5px;
     background-color: #F0F0F0;
     border-radius: 25px;
-    position: absolute;
-    left: 10px;
-    top: 272px;
+    position: relative;
+    top: 0px;
+    left: 20px;
 }
 
 /* #courses .course #empty #progress{
@@ -204,9 +211,16 @@ a{
 } */
 
 #courses .course span{
-    position: absolute;
-    top: 265px;
+    position: relative;
+    top: -15px;
     left: 160px;
+}
+
+
+#courses .course ul{
+    position: relative;
+    top: -10px;
+
 }
 
 ::-webkit-scrollbar {
