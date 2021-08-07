@@ -658,6 +658,13 @@ app.get("/admin", (req, res)=>{
                         }
                         users.push({"name": user, "grades": grades, "average": average, "max": max, "finished": finished, "total": data2.length});
                     }
+                    console.log(data);
+                    if(Object.keys(data).length == 0){
+                        users = [{"name": '-', "grades": '-', "average": '-', "max": '-', "finished": 0, "total": data2.length}];
+                        console.log("werkt");
+                        console.log(users);
+                    }
+
                     all_averages = [];
                     all_progress = [];
                     for(let j = 0; j < users.length;j++){
@@ -694,6 +701,9 @@ app.get("/admin", (req, res)=>{
 
                         average_winner= best_users_average[average_winners.indexOf(max)];
                     }
+                    else if(all_averages.length == 0){
+                        average_winner = {"name": '-', "score": '-'};
+                    }
                     else{
                         average_winner = best_users_average[0];
                     }
@@ -712,6 +722,9 @@ app.get("/admin", (req, res)=>{
 
                         progress_winner= best_users_progress[progress_winners.indexOf(max)];
                     }
+                    else if(all_progress.length == 0){
+                        progress_winner = {"name": '-', "score": '-'};
+                    }
                     else{
                         progress_winner = best_users_progress[0];
                     }
@@ -724,7 +737,13 @@ app.get("/admin", (req, res)=>{
                             counter++;
                         }
                     }
-                    let total_average = Math.round((total/counter)*10)/10;
+                    let total_average;
+                    if(counter == 0){
+                        total_average = '-';
+                    }
+                    else{
+                        total_average = Math.round((total/counter)*10)/10;
+                    }
 
                     let total2 = 0;
                     let counter2 = 0;
