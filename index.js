@@ -12,14 +12,14 @@ app.set('view-engine', 'ejs')
 let loggedIn = [];
 // {"username": "", "IP": ""}
 
-// header('x-forwarded-for').split(',')[0] to get IP
+// req.header('x-forwarded-for').split(',')[0] to get IP
 app.get("/", (req, res)=> {
     if(loggedIn.length == 0){
         res.render(__dirname + "/public/index.ejs", {error: ""});
     }
     else{
         for(let i = 0;i<loggedIn.length;i++){
-            if(header('x-forwarded-for').split(',')[0] == loggedIn[i]["IP"]){
+            if(req.header('x-forwarded-for').split(',')[0] == loggedIn[i]["IP"]){
                 res.redirect("/dashboard");
                 break;
             }
@@ -43,9 +43,9 @@ app.post('/login', (req, res) => {
 
     for(let i = 0;i<users.length;i++){
         if(username == users[i]["username"] && password == users[i]["password"]){
-            loggedIn.push({"username": username, "IP": header('x-forwarded-for').split(',')[0]})
-            console.log('@'+username + ' just logged in from: ' + header('x-forwarded-for').split(',')[0])
-            console.log(header('x-forwarded-for').split(',')[0])
+            loggedIn.push({"username": username, "IP": req.header('x-forwarded-for').split(',')[0]})
+            console.log('@'+username + ' just logged in from: ' + req.header('x-forwarded-for').split(',')[0])
+            console.log(req.header('x-forwarded-for').split(',')[0])
             res.redirect("/dashboard");
             break;
         }
@@ -61,7 +61,7 @@ app.get("/dashboard", (req, res)=> {
     }
     else{
         for(let i = 0;i<loggedIn.length;i++){
-            if(header('x-forwarded-for').split(',')[0] == loggedIn[i]["IP"]){
+            if(req.header('x-forwarded-for').split(',')[0] == loggedIn[i]["IP"]){
                 let user = loggedIn[i]["username"];
                 if(user == 'admin'){
                     res.redirect("/admin");
@@ -145,7 +145,7 @@ app.get("/quiz/:course/:index", (req, res)=>{
     }
     else{
         for(let i = 0;i<loggedIn.length;i++){
-            if(header('x-forwarded-for').split(',')[0] == loggedIn[i]["IP"]){
+            if(req.header('x-forwarded-for').split(',')[0] == loggedIn[i]["IP"]){
                 let user = loggedIn[i]["username"];
                 let course = parseInt(req.params.course);
                 let index = parseInt(req.params.index);
@@ -229,7 +229,7 @@ app.post("/quiz/:course/:index", (req, res)=>{
     let users = data["users"];
     let user;
     for(let i = 0;i < loggedIn.length;i++){
-        if(loggedIn[i]["IP"] == header('x-forwarded-for').split(',')[0]){
+        if(loggedIn[i]["IP"] == req.header('x-forwarded-for').split(',')[0]){
             user = loggedIn[i]["username"];
         }
     }
@@ -278,7 +278,7 @@ app.get("/results/:index", (req, res)=>{
     }
     else{
         for(let i = 0;i < loggedIn.length;i++){
-            if(loggedIn[i]["IP"] == header('x-forwarded-for').split(',')[0]){
+            if(loggedIn[i]["IP"] == req.header('x-forwarded-for').split(',')[0]){
                 user = loggedIn[i]["username"]
                 let rawdata_results = fs.readFileSync('data/courses-results.json');
                 let data_results = JSON.parse(rawdata_results);
@@ -327,7 +327,7 @@ app.get("/movie/:index", (req, res)=>{
     }
     else{
         for(let i = 0;i < loggedIn.length;i++){
-            if(loggedIn[i]["IP"] == header('x-forwarded-for').split(',')[0]){
+            if(loggedIn[i]["IP"] == req.header('x-forwarded-for').split(',')[0]){
                 user = loggedIn[i]["username"]
                 let index = parseInt(req.params.index);
                 let rawdata = fs.readFileSync('data/courses-info.json');
@@ -394,7 +394,7 @@ app.get("/overview/:index", (req, res)=>{
     }
     else{
         for(let i = 0;i < loggedIn.length;i++){
-            if(loggedIn[i]["IP"] == header('x-forwarded-for').split(',')[0]){
+            if(loggedIn[i]["IP"] == req.header('x-forwarded-for').split(',')[0]){
                 user = loggedIn[i]["username"]
                 let rawdata_results = fs.readFileSync('data/courses-results.json');
                 let data_results = JSON.parse(rawdata_results);
@@ -444,7 +444,7 @@ app.post("/overview/:index", (req, res)=>{
     }
     else{
         for(let i = 0;i < loggedIn.length;i++){
-            if(loggedIn[i]["IP"] == header('x-forwarded-for').split(',')[0]){
+            if(loggedIn[i]["IP"] == req.header('x-forwarded-for').split(',')[0]){
                 user = loggedIn[i]["username"]
                 let rawdata_results = fs.readFileSync('data/courses-results.json');
                 let data_results = JSON.parse(rawdata_results);
@@ -480,7 +480,7 @@ app.post("/overview/:index", (req, res)=>{
 
 app.get("/logout", (req, res)=>{
     for(let i = 0;i < loggedIn.length;i++){
-        if(loggedIn[i]["IP"] == header('x-forwarded-for').split(',')[0]){
+        if(loggedIn[i]["IP"] == req.header('x-forwarded-for').split(',')[0]){
             loggedIn.splice(i, 1);
         }
     }
@@ -493,7 +493,7 @@ app.get("/info/:index", (req, res)=>{
     }
     else{
         for(let i = 0;i < loggedIn.length;i++){
-            if(loggedIn[i]["IP"] == header('x-forwarded-for').split(',')[0]){
+            if(loggedIn[i]["IP"] == req.header('x-forwarded-for').split(',')[0]){
                 user = loggedIn[i]["username"]
                 let index = parseInt(req.params.index);
                 let rawdata = fs.readFileSync('data/courses-info.json');
@@ -556,7 +556,7 @@ app.get("/summary/:index", (req, res) => {
     }
     else{
         for(let i = 0;i < loggedIn.length;i++){
-            if(loggedIn[i]["IP"] == header('x-forwarded-for').split(',')[0]){
+            if(loggedIn[i]["IP"] == req.header('x-forwarded-for').split(',')[0]){
                 user = loggedIn[i]["username"]
                 let index = parseInt(req.params.index);
                 let rawdata = fs.readFileSync('data/courses-info.json');
@@ -619,7 +619,7 @@ app.get("/admin", (req, res)=>{
     }
     else{
         for(let i = 0;i < loggedIn.length;i++){
-            if(loggedIn[i]["IP"] == header('x-forwarded-for').split(',')[0]){
+            if(loggedIn[i]["IP"] == req.header('x-forwarded-for').split(',')[0]){
                 if(loggedIn[i]["username"] == 'admin'){
                     let rawdata = fs.readFileSync('data/courses-results.json');
                     let data = JSON.parse(rawdata)["users"];
