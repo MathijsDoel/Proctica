@@ -1,32 +1,41 @@
 const Express = require("express");
 const bodyParser = require('body-parser');
 const fs = require('fs');
+const cookieParser = require('cookie-parser');
+const { log } = require("console");
 
 
 const app = Express();
 const port = 3000; 
 
 app.use(Express.static("public"));
+app.use(cookieParser());
 app.set('view-engine', 'ejs')
 
 let loggedIn = [];
 // {"username": "", "IP": ""}
 
 // req.header('x-forwarded-for').split(',')[0] to get IP
+
+function checkLogin (req) {
+    let rawdata = fs.readFileSync('data/users.json');
+    let data = JSON.parse(rawdata);
+    let users = data["users"]
+    for(let i = 0;i<users.length;i++){
+        // console.log(users[i]['username'], users[i]['id'])
+        if (users[i]['username'] == req.cookies['username'] && users[i]['id'] == req.cookies['id'] && users[i]['id'] != null){
+            return true
+        }
+    }
+    return false
+}
+
 app.get("/", (req, res)=> {
-    if(loggedIn.length == 0){
+    if (!checkLogin(req)){
         res.render(__dirname + "/public/index.ejs", {error: ""});
     }
-    else{
-        for(let i = 0;i<loggedIn.length;i++){
-            if(req.header('x-forwarded-for').split(',')[0] == loggedIn[i]["IP"]){
-                res.redirect("/dashboard");
-                break;
-            }
-            else if(i == loggedIn.length - 1){
-                res.render(__dirname + "/public/index.ejs", {error: ""});
-            }
-        }
+    else {
+        res.redirect("/dashboard");
     }
 })
 
@@ -43,9 +52,14 @@ app.post('/login', (req, res) => {
 
     for(let i = 0;i<users.length;i++){
         if(username == users[i]["username"] && password == users[i]["password"]){
-            loggedIn.push({"username": username, "IP": req.header('x-forwarded-for').split(',')[0]})
-            console.log('@'+username + ' just logged in from: ' + req.header('x-forwarded-for').split(',')[0])
-            console.log(req.header('x-forwarded-for').split(',')[0])
+            let id = Math.floor(Math.random() * 1000000000);
+            res.cookie('username', username, {maxAge: 2629743830});
+            res.cookie('id', id, {maxAge: 2629743830});
+            users[i]['id'] = id;
+            console.log('@' + username + ' just logged in. His/her new id is ' + id)
+            temp_users = {'users' : users}
+            let json_data = JSON.stringify(temp_users, null, 2);
+            fs.writeFileSync("data/users.json", json_data);
             res.redirect("/dashboard");
             break;
         }
@@ -55,19 +69,35 @@ app.post('/login', (req, res) => {
     }
   });
 
+  app.get("/logout", (req, res)=>{
+    console.log('@' +  req.cookies['username'] + ' just logged out');
+    res.clearCookie('username');
+    res.clearCookie('id');
+    let rawdata = fs.readFileSync('data/users.json');
+    let data = JSON.parse(rawdata);
+    let users = data["users"]
+    for(let i = 0;i<users.length;i++){
+        if (users[i] == req.cookies['username']){
+            users[i]['id'] = null;temp_users = {'users' : users}
+            let json_data = JSON.stringify(temp_users, null, 2);
+            fs.writeFileSync("data/users.json", json_data);
+            break;
+        }
+    }
+    res.redirect("/")
+})
+
 app.get("/dashboard", (req, res)=> {
-    if(loggedIn.length == 0){
+    if (!checkLogin(req)) {
         res.redirect("/")
     }
-    else{
-        for(let i = 0;i<loggedIn.length;i++){
-            if(req.header('x-forwarded-for').split(',')[0] == loggedIn[i]["IP"]){
-                let user = loggedIn[i]["username"];
-                if(user == 'admin'){
-                    res.redirect("/admin");
-                }
-                else{
-                    let rawdata = fs.readFileSync('data/courses-info.json');
+    else {
+        let user = req.cookies['username']
+        if (user == 'admin'){
+            res.redirect("/admin");
+        }
+        else{
+            let rawdata = fs.readFileSync('data/courses-info.json');
                     let data = JSON.parse(rawdata);
                     let courses = data["courses"];
 
@@ -129,88 +159,81 @@ app.get("/dashboard", (req, res)=> {
                     }
                     
                     res.render(__dirname + "/public/dashboard.ejs", {courses: courses, grades: grades, average: average, progress: progress});
-                    break;
-                }
-            } 
-            else if(i == loggedIn.length - 1){
-                res.redirect("/")
-            }
+                    // break;
         }
+
     }
+    
 })
 
 app.get("/quiz/:course/:index", (req, res)=>{
-    if(loggedIn.length == 0){
+    if (!checkLogin(req)) {
         res.redirect("/")
     }
-    else{
-        for(let i = 0;i<loggedIn.length;i++){
-            if(req.header('x-forwarded-for').split(',')[0] == loggedIn[i]["IP"]){
-                let user = loggedIn[i]["username"];
-                let course = parseInt(req.params.course);
-                let index = parseInt(req.params.index);
-                let rawdata = fs.readFileSync('data/questions.json');
-                let temp_data = JSON.parse(rawdata);
-                let data = temp_data["course" + course];
+    else {
+        let user = req.cookies['username']
+        if (user == 'admin'){
+            res.redirect("/admin");
+        }
+        else{
+            let course = parseInt(req.params.course);
+            let index = parseInt(req.params.index);
+            let rawdata = fs.readFileSync('data/questions.json');
+            let temp_data = JSON.parse(rawdata);
+            let data = temp_data["course" + course];
 
-                if(data == undefined){
-                    res.send('<h1>Deze cursus is nog niet af</h1><a href="/dashboard">Terug naar dashboard</a>');
+            if(data == undefined){
+                res.send('<h1>Deze cursus is nog niet af</h1><a href="/dashboard">Terug naar dashboard</a>');
+            }
+            else{
+                let rawdata2 = fs.readFileSync('data/courses-results.json');
+                let temp_data2 = JSON.parse(rawdata2);
+                let temp_userdata = temp_data2["users"][user];
+                if(temp_userdata == undefined){
+                    temp_data2["users"][user] = {};
+                    let json_data = JSON.stringify(temp_data2, null, 2);
+                    fs.writeFileSync("data/courses-results.json", json_data);
+                    rawdata2 = fs.readFileSync('data/courses-results.json');
+                    temp_data2 = JSON.parse(rawdata2);
+                }
+                let test_data = temp_data2["users"][user]["course" + course];
+                let data2;
+                if(test_data == undefined){
+                    temp_data2["users"][user]["course" + course] = {"questions": [], "complete": false, "grade": 0, "corrected": [], "info": false, "movie": false};
+                    let json_data = JSON.stringify(temp_data2, null, 2);
+                    fs.writeFileSync("data/courses-results.json", json_data);
+                    rawdata2 = fs.readFileSync('data/courses-results.json');
+                    temp_data2 = JSON.parse(rawdata2);
+                    data2 = temp_data2["users"][user]["course" + course]["questions"];
                 }
                 else{
-                    let rawdata2 = fs.readFileSync('data/courses-results.json');
-                    let temp_data2 = JSON.parse(rawdata2);
-                    let temp_userdata = temp_data2["users"][user];
-                    if(temp_userdata == undefined){
-                        temp_data2["users"][user] = {};
-                        let json_data = JSON.stringify(temp_data2, null, 2);
-                        fs.writeFileSync("data/courses-results.json", json_data);
-                        rawdata2 = fs.readFileSync('data/courses-results.json');
-                        temp_data2 = JSON.parse(rawdata2);
-                    }
-                    let test_data = temp_data2["users"][user]["course" + course];
-                    let data2;
-                    if(test_data == undefined){
-                        temp_data2["users"][user]["course" + course] = {"questions": [], "complete": false, "grade": 0, "corrected": [], "info": false, "movie": false};
-                        let json_data = JSON.stringify(temp_data2, null, 2);
-                        fs.writeFileSync("data/courses-results.json", json_data);
-                        rawdata2 = fs.readFileSync('data/courses-results.json');
-                        temp_data2 = JSON.parse(rawdata2);
-                        data2 = temp_data2["users"][user]["course" + course]["questions"];
-                    }
-                    else{
-                        data2 = temp_data2["users"][user]["course" + course]["questions"];
-                    }
-                    if(temp_data2["users"][user]["course" + course]["complete"] == true){
-                        res.redirect("/results/" + course);
-                        return;
-                    }
-
-                    if(index >= data.length || index<0){
-                        res.send("question not found");
-                    }
-                    else{
-                        let next_index = index + 1;
-                        let previous_index = index - 1;
-                        let total_questions = data.length;
-                        let answers = data[index]["answers"];
-                        let given;
-                        for(let j = 0; j<data2.length;j++){
-                            if(data2[j]["question"] == index.toString()){
-                                given = parseInt(data2[j]["answer"]);
-                                break;
-                            }
-                            else if(j == data2.length - 1){
-                                given = -1;
-                            }
-                        }
-                        res.render(__dirname + "/public/quiz.ejs", {main_question: data[index]["question"], next:next_index, previous:previous_index, total_questions:total_questions, index:index, answers:answers, given:given, course:course});
-                    }
-                    break;
-                
+                    data2 = temp_data2["users"][user]["course" + course]["questions"];
                 }
-            }
-            else if(i == loggedIn.length - 1){
-                res.redirect("/")
+                if(temp_data2["users"][user]["course" + course]["complete"] == true){
+                    res.redirect("/results/" + course);
+                    return;
+                }
+
+                if(index >= data.length || index<0){
+                    res.send("question not found");
+                }
+                else{
+                    let next_index = index + 1;
+                    let previous_index = index - 1;
+                    let total_questions = data.length;
+                    let answers = data[index]["answers"];
+                    let given;
+                    for(let j = 0; j<data2.length;j++){
+                        if(data2[j]["question"] == index.toString()){
+                            given = parseInt(data2[j]["answer"]);
+                            break;
+                        }
+                        else if(j == data2.length - 1){
+                            given = -1;
+                        }
+                    }
+                    res.render(__dirname + "/public/quiz.ejs", {main_question: data[index]["question"], next:next_index, previous:previous_index, total_questions:total_questions, index:index, answers:answers, given:given, course:course});
+                }
             }
         }
     }
@@ -228,10 +251,11 @@ app.post("/quiz/:course/:index", (req, res)=>{
     let data = JSON.parse(rawdata);
     let users = data["users"];
     let user;
-    for(let i = 0;i < loggedIn.length;i++){
-        if(loggedIn[i]["IP"] == req.header('x-forwarded-for').split(',')[0]){
-            user = loggedIn[i]["username"];
-        }
+    if (!checkLogin(req)) {
+        res.redirect("/")
+    }
+    else {
+        user = req.cookies['username'];
     }
     let user_info = users[user];
     let course = user_info["course" + course_index]["questions"];
@@ -252,17 +276,12 @@ app.post("/quiz/:course/:index", (req, res)=>{
                     course.splice(index, 0, {"question": index_str, "answer": value});
                 }
                 break;
-                // if(course[index] != undefined){
-                //     course.splice(index, 0, {"question": index_str, "answer": value});
-                // }
-               
             }
         }
     }
     data["users"][user]["course" + course_index]["questions"] = course;
     let json_data = JSON.stringify(data, null, 2);
     fs.writeFileSync("data/courses-results.json", json_data);
-
     res.redirect("/quiz/" + course_index + "/" + index);
 });
 
@@ -273,48 +292,40 @@ app.get("/results/:index", (req, res)=>{
     let questions = data_questions["course" + index];
     let length = questions.length;
     let user;
-    if(loggedIn.length == 0){
-        res.redirect('/')
+    if (!checkLogin(req)) {
+        res.redirect("/")
     }
-    else{
-        for(let i = 0;i < loggedIn.length;i++){
-            if(loggedIn[i]["IP"] == req.header('x-forwarded-for').split(',')[0]){
-                user = loggedIn[i]["username"]
-                let rawdata_results = fs.readFileSync('data/courses-results.json');
-                let data_results = JSON.parse(rawdata_results);
-                let users_results = data_results["users"][user]["course" + index]["questions"];
+    else {
+        user = req.cookies['username'];
+        let rawdata_results = fs.readFileSync('data/courses-results.json');
+        let data_results = JSON.parse(rawdata_results);
+        let users_results = data_results["users"][user]["course" + index]["questions"];
 
-                let users_results2 =  data_results["users"][user]["course" + index]["corrected"];
+        let users_results2 =  data_results["users"][user]["course" + index]["corrected"];
 
-                let grade = data_results["users"][user]["course" + index]["grade"];
+        let grade = data_results["users"][user]["course" + index]["grade"];
 
-                let real_questions = [];
-                for(let j = 0;j<length;j++){
-                    real_questions.push(questions[j]["question"]);
-                }
-                let real_answers = [];
-                for(let j = 0;j<length;j++){
-                    real_answers.push(questions[j]["answers"]);
-                }
-                let correct = [];
-                let amount = 0;
-                for(let j = 0;j<length;j++){
-                    if(users_results2[j] == questions[j]["correct"].toString()){
-                        correct.push(j);
-                        amount++;
-                    }
-                    else{
-                        correct.push(-1);
-                    }
-                }
-                res.render(__dirname + "/public/results.ejs", {info: users_results2, questions: real_questions, answers: real_answers, index: index, correct: correct, grade: grade, amount: amount});
-                break;
+        let real_questions = [];
+        for(let j = 0;j<length;j++){
+            real_questions.push(questions[j]["question"]);
+        }
+        let real_answers = [];
+        for(let j = 0;j<length;j++){
+            real_answers.push(questions[j]["answers"]);
+        }
+        let correct = [];
+        let amount = 0;
+        for(let j = 0;j<length;j++){
+            if(users_results2[j] == questions[j]["correct"].toString()){
+                correct.push(j);
+                amount++;
             }
-            else if(i == loggedIn.length - 1){
-                res.redirect("/")
+            else{
+                correct.push(-1);
             }
         }
-    }
+        res.render(__dirname + "/public/results.ejs", {info: users_results2, questions: real_questions, answers: real_answers, index: index, correct: correct, grade: grade, amount: amount});
+        }
 })
 
 app.get("/home", (req, res)=>{
@@ -322,10 +333,11 @@ app.get("/home", (req, res)=>{
 })
 
 app.get("/movie/:index", (req, res)=>{
-    if(loggedIn.length == 0){
-        res.redirect('/')
+    if (!checkLogin(req)) {
+        res.redirect("/")
     }
-    else{
+    else {
+        user = req.cookies['username'];
         for(let i = 0;i < loggedIn.length;i++){
             if(loggedIn[i]["IP"] == req.header('x-forwarded-for').split(',')[0]){
                 user = loggedIn[i]["username"]
@@ -389,238 +401,204 @@ app.get("/overview/:index", (req, res)=>{
     let questions = data_questions["course" + index];
     let length = questions.length;
     let user;
-    if(loggedIn.length == 0){
-        res.redirect('/')
+    if (!checkLogin(req)) {
+        res.redirect("/")
     }
-    else{
-        for(let i = 0;i < loggedIn.length;i++){
-            if(loggedIn[i]["IP"] == req.header('x-forwarded-for').split(',')[0]){
-                user = loggedIn[i]["username"]
-                let rawdata_results = fs.readFileSync('data/courses-results.json');
-                let data_results = JSON.parse(rawdata_results);
-                let users_results = data_results["users"][user]["course" + index]["questions"];
+    else {
+        user = req.cookies['username'];
+        let rawdata_results = fs.readFileSync('data/courses-results.json');
+        let data_results = JSON.parse(rawdata_results);
+        let users_results = data_results["users"][user]["course" + index]["questions"];
 
-                let user_answers = [];
-                let back = 0;
-                for(let j = 0;j<length;j++){
-                    if(j-back >= users_results.length){
-                        user_answers.push("Geen antwoord ingevuld");
-                    }
-                    else if(j == parseInt(users_results[j - back]["question"])){
-                        user_answers.push(users_results[j - back]["answer"]);
-                    }
-                    else{
-                        user_answers.push("Geen antwoord ingevuld");
-                        back+=1;
-                    }
-                }
-
-                let real_questions = [];
-                for(let j = 0;j<length;j++){
-                    real_questions.push(questions[j]["question"]);
-                }
-                let real_answers = [];
-                for(let j = 0;j<length;j++){
-                    real_answers.push(questions[j]["answers"]);
-                }
-                data_results["users"][user]["course" + index]["corrected"] = user_answers;
-                let json_data = JSON.stringify(data_results, null, 2);
-                fs.writeFileSync("data/courses-results.json", json_data);
-                res.render(__dirname + "/public/overview.ejs", {info: user_answers, questions: real_questions, answers: real_answers, index: index});
-                break;
+        let user_answers = [];
+        let back = 0;
+        for(let j = 0;j<length;j++){
+            if(j-back >= users_results.length){
+                user_answers.push("Geen antwoord ingevuld");
             }
-            else if(i == loggedIn.length - 1){
-                res.redirect("/")
+            else if(j == parseInt(users_results[j - back]["question"])){
+                user_answers.push(users_results[j - back]["answer"]);
+            }
+            else{
+                user_answers.push("Geen antwoord ingevuld");
+                back+=1;
             }
         }
+
+        let real_questions = [];
+        for(let j = 0;j<length;j++){
+            real_questions.push(questions[j]["question"]);
+        }
+        let real_answers = [];
+        for(let j = 0;j<length;j++){
+            real_answers.push(questions[j]["answers"]);
+        }
+        data_results["users"][user]["course" + index]["corrected"] = user_answers;
+        let json_data = JSON.stringify(data_results, null, 2);
+        fs.writeFileSync("data/courses-results.json", json_data);
+        res.render(__dirname + "/public/overview.ejs", {info: user_answers, questions: real_questions, answers: real_answers, index: index});
+
     }
 })
 
 app.post("/overview/:index", (req, res)=>{
     let index = parseInt(req.params.index);
     let user;
-    if(loggedIn.length == 0){
-        res.redirect('/')
+    if (!checkLogin(req)) {
+        res.redirect("/")
     }
-    else{
-        for(let i = 0;i < loggedIn.length;i++){
-            if(loggedIn[i]["IP"] == req.header('x-forwarded-for').split(',')[0]){
-                user = loggedIn[i]["username"]
-                let rawdata_results = fs.readFileSync('data/courses-results.json');
-                let data_results = JSON.parse(rawdata_results);
-                let user_answers = data_results["users"][user]["course" + index]["corrected"]
+    else {
+        user = req.cookies['username'];
+        let rawdata_results = fs.readFileSync('data/courses-results.json');
+        let data_results = JSON.parse(rawdata_results);
+        let user_answers = data_results["users"][user]["course" + index]["corrected"]
 
-                let rawdata_questions = fs.readFileSync('data/questions.json');
-                let data_questions = JSON.parse(rawdata_questions);
-                let questions = data_questions["course" + index];
-                let length = questions.length;
+        let rawdata_questions = fs.readFileSync('data/questions.json');
+        let data_questions = JSON.parse(rawdata_questions);
+        let questions = data_questions["course" + index];
+        let length = questions.length;
 
-                let points = 0;
-                for(let j = 0;j<length;j++){
+        let points = 0;
+        for(let j = 0;j<length;j++){
 
-                    if(questions[j]["correct"] == parseInt(user_answers[j])){
-                        points++;
-                    }
-                }
-                let grade = Math.round((points/length * 9 + 1) * 10)/10;
-                data_results["users"][user]["course" + index]["complete"] = true;
-                data_results["users"][user]["course" + index]["grade"] = grade;
-                let json_data = JSON.stringify(data_results, null, 2);
-                fs.writeFileSync("data/courses-results.json", json_data);
-
-
-                res.redirect("/results/"+ index)
-            }
-            else if(i == loggedIn.length - 1){
-                res.redirect("/")
+            if(questions[j]["correct"] == parseInt(user_answers[j])){
+                points++;
             }
         }
+        let grade = Math.round((points/length * 9 + 1) * 10)/10;
+        data_results["users"][user]["course" + index]["complete"] = true;
+        data_results["users"][user]["course" + index]["grade"] = grade;
+        let json_data = JSON.stringify(data_results, null, 2);
+        fs.writeFileSync("data/courses-results.json", json_data);
+
+
+        res.redirect("/results/"+ index)
     }
 })
 
-app.get("/logout", (req, res)=>{
-    for(let i = 0;i < loggedIn.length;i++){
-        if(loggedIn[i]["IP"] == req.header('x-forwarded-for').split(',')[0]){
-            loggedIn.splice(i, 1);
-        }
-    }
-    res.redirect("/")
-})
+
 
 app.get("/info/:index", (req, res)=>{
-    if(loggedIn.length == 0){
-        res.redirect('/')
+    if (!checkLogin(req)) {
+        res.redirect("/")
     }
-    else{
-        for(let i = 0;i < loggedIn.length;i++){
-            if(loggedIn[i]["IP"] == req.header('x-forwarded-for').split(',')[0]){
-                user = loggedIn[i]["username"]
-                let index = parseInt(req.params.index);
-                let rawdata = fs.readFileSync('data/courses-info.json');
-                let data = JSON.parse(rawdata);
-                let courses = data["courses"];
+    else {
+        user = req.cookies['username'];
+        let index = parseInt(req.params.index);
+        let rawdata = fs.readFileSync('data/courses-info.json');
+        let data = JSON.parse(rawdata);
+        let courses = data["courses"];
 
-                let rawdata2 = fs.readFileSync('data/courses-results.json');
-                let temp_data2 = JSON.parse(rawdata2);
-                let temp_userdata = temp_data2["users"][user];
-                if(temp_userdata == undefined){
-                    temp_data2["users"][user] = {};
-                    let json_data = JSON.stringify(temp_data2, null, 2);
-                    fs.writeFileSync("data/courses-results.json", json_data);
-                    rawdata2 = fs.readFileSync('data/courses-results.json');
-                    temp_data2 = JSON.parse(rawdata2);
-                }
-                let test_data = temp_data2["users"][user]["course" + index];
-                let data2;
-                if(test_data == undefined){
-                    temp_data2["users"][user]["course" + index] = {"questions": [], "complete": false, "grade": 0, "corrected": [], "info": false, "movie": false};
-                    let json_data = JSON.stringify(temp_data2, null, 2);
-                    fs.writeFileSync("data/courses-results.json", json_data);
-                    rawdata2 = fs.readFileSync('data/courses-results.json');
-                    temp_data2 = JSON.parse(rawdata2);
-                    data2 = temp_data2["users"][user]["course" + index]["questions"];
-                }
-                else{
-                    data2 = temp_data2["users"][user]["course" + index]["questions"];
-                }
-                
-                if(temp_data2["users"][user]["course" + index]["info"] == false){
-                    temp_data2["users"][user]["course" + index]["info"] = true;
-                    let json_data = JSON.stringify(temp_data2, null, 2);
-                    fs.writeFileSync("data/courses-results.json", json_data);
-                    rawdata2 = fs.readFileSync('data/courses-results.json');
-                    temp_data2 = JSON.parse(rawdata2);
-                }
+        let rawdata2 = fs.readFileSync('data/courses-results.json');
+        let temp_data2 = JSON.parse(rawdata2);
+        let temp_userdata = temp_data2["users"][user];
+        if(temp_userdata == undefined){
+            temp_data2["users"][user] = {};
+            let json_data = JSON.stringify(temp_data2, null, 2);
+            fs.writeFileSync("data/courses-results.json", json_data);
+            rawdata2 = fs.readFileSync('data/courses-results.json');
+            temp_data2 = JSON.parse(rawdata2);
+        }
+        let test_data = temp_data2["users"][user]["course" + index];
+        let data2;
+        if(test_data == undefined){
+            temp_data2["users"][user]["course" + index] = {"questions": [], "complete": false, "grade": 0, "corrected": [], "info": false, "movie": false};
+            let json_data = JSON.stringify(temp_data2, null, 2);
+            fs.writeFileSync("data/courses-results.json", json_data);
+            rawdata2 = fs.readFileSync('data/courses-results.json');
+            temp_data2 = JSON.parse(rawdata2);
+            data2 = temp_data2["users"][user]["course" + index]["questions"];
+        }
+        else{
+            data2 = temp_data2["users"][user]["course" + index]["questions"];
+        }
+        
+        if(temp_data2["users"][user]["course" + index]["info"] == false){
+            temp_data2["users"][user]["course" + index]["info"] = true;
+            let json_data = JSON.stringify(temp_data2, null, 2);
+            fs.writeFileSync("data/courses-results.json", json_data);
+            rawdata2 = fs.readFileSync('data/courses-results.json');
+            temp_data2 = JSON.parse(rawdata2);
+        }
 
-
-                let info2;
-                for(let j = 0; j < courses.length;j++){
-                    if(courses[j]["id"] == index){
-                        info2 = courses[j]["pdf"];
-                        break;
-                    }
-                }
-                res.render(__dirname + "/public/pdf.ejs", {info: info2, index: index})
-            }
-            else if(i == loggedIn.length - 1){
-                res.redirect("/")
+        let info2;
+        for(let j = 0; j < courses.length;j++){
+            if(courses[j]["id"] == index){
+                info2 = courses[j]["pdf"];
+                break;
             }
         }
+        res.render(__dirname + "/public/pdf.ejs", {info: info2, index: index})
     }
 })
 
 
 app.get("/summary/:index", (req, res) => {
-    if(loggedIn.length == 0){
-        res.redirect('/')
+    if (!checkLogin(req)) {
+        res.redirect("/")
     }
-    else{
-        for(let i = 0;i < loggedIn.length;i++){
-            if(loggedIn[i]["IP"] == req.header('x-forwarded-for').split(',')[0]){
-                user = loggedIn[i]["username"]
-                let index = parseInt(req.params.index);
-                let rawdata = fs.readFileSync('data/courses-info.json');
-                let data = JSON.parse(rawdata);
-                let courses = data["courses"];
+    else {
+        user = req.cookies['username'];
+        let index = parseInt(req.params.index);
+        let rawdata = fs.readFileSync('data/courses-info.json');
+        let data = JSON.parse(rawdata);
+        let courses = data["courses"];
 
-                let rawdata2 = fs.readFileSync('data/courses-results.json');
-                let temp_data2 = JSON.parse(rawdata2);
-                let temp_userdata = temp_data2["users"][user];
-                if(temp_userdata == undefined){
-                    temp_data2["users"][user] = {};
-                    let json_data = JSON.stringify(temp_data2, null, 2);
-                    fs.writeFileSync("data/courses-results.json", json_data);
-                    rawdata2 = fs.readFileSync('data/courses-results.json');
-                    temp_data2 = JSON.parse(rawdata2);
-                }
-                let test_data = temp_data2["users"][user]["course" + index];
-                let data2;
-                if(test_data == undefined){
-                    temp_data2["users"][user]["course" + index] = {"questions": [], "complete": false, "grade": 0, "corrected": [], "info": false, "movie": false};
-                    let json_data = JSON.stringify(temp_data2, null, 2);
-                    fs.writeFileSync("data/courses-results.json", json_data);
-                    rawdata2 = fs.readFileSync('data/courses-results.json');
-                    temp_data2 = JSON.parse(rawdata2);
-                    data2 = temp_data2["users"][user]["course" + index]["questions"];
-                }
-                else{
-                    data2 = temp_data2["users"][user]["course" + index]["questions"];
-                }
-                
-                // if(temp_data2["users"][user]["course" + index]["info"] == false){
-                //     temp_data2["users"][user]["course" + index]["info"] = true;
-                //     let json_data = JSON.stringify(temp_data2, null, 2);
-                //     fs.writeFileSync("data/courses-results.json", json_data);
-                //     rawdata2 = fs.readFileSync('data/courses-results.json');
-                //     temp_data2 = JSON.parse(rawdata2);
-                // }
+        let rawdata2 = fs.readFileSync('data/courses-results.json');
+        let temp_data2 = JSON.parse(rawdata2);
+        let temp_userdata = temp_data2["users"][user];
+        if(temp_userdata == undefined){
+            temp_data2["users"][user] = {};
+            let json_data = JSON.stringify(temp_data2, null, 2);
+            fs.writeFileSync("data/courses-results.json", json_data);
+            rawdata2 = fs.readFileSync('data/courses-results.json');
+            temp_data2 = JSON.parse(rawdata2);
+        }
+        let test_data = temp_data2["users"][user]["course" + index];
+        let data2;
+        if(test_data == undefined){
+            temp_data2["users"][user]["course" + index] = {"questions": [], "complete": false, "grade": 0, "corrected": [], "info": false, "movie": false};
+            let json_data = JSON.stringify(temp_data2, null, 2);
+            fs.writeFileSync("data/courses-results.json", json_data);
+            rawdata2 = fs.readFileSync('data/courses-results.json');
+            temp_data2 = JSON.parse(rawdata2);
+            data2 = temp_data2["users"][user]["course" + index]["questions"];
+        }
+        else{
+            data2 = temp_data2["users"][user]["course" + index]["questions"];
+        }
+        
+        // if(temp_data2["users"][user]["course" + index]["info"] == false){
+        //     temp_data2["users"][user]["course" + index]["info"] = true;
+        //     let json_data = JSON.stringify(temp_data2, null, 2);
+        //     fs.writeFileSync("data/courses-results.json", json_data);
+        //     rawdata2 = fs.readFileSync('data/courses-results.json');
+        //     temp_data2 = JSON.parse(rawdata2);
+        // }
 
 
-                let info2;
-                for(let j = 0; j < courses.length;j++){
-                    if(courses[j]["id"] == index){
-                        info2 = courses[j]["summary"];
-                        break;
-                    }
-                }
-                res.render(__dirname + "/public/summary.ejs", {info: info2, index: index})
-            }
-            else if(i == loggedIn.length - 1){
-                res.redirect("/")
+        let info2;
+        for(let j = 0; j < courses.length;j++){
+            if(courses[j]["id"] == index){
+                info2 = courses[j]["summary"];
+                break;
             }
         }
+        res.render(__dirname + "/public/summary.ejs", {info: info2, index: index})
     }
 })
 
 
 app.get("/admin", (req, res)=>{
-    if(loggedIn.length == 0){
-        res.redirect('/')
+    if (!checkLogin(req)) {
+        res.redirect("/")
     }
-    else{
-        for(let i = 0;i < loggedIn.length;i++){
-            if(loggedIn[i]["IP"] == req.header('x-forwarded-for').split(',')[0]){
-                if(loggedIn[i]["username"] == 'admin'){
+    else {
+        user = req.cookies['username'];
+        if (user != 'admin' ) {
+            res.send("je hebt geen toegang tot deze pagina")
+        }
+        else{
                     let rawdata = fs.readFileSync('data/courses-results.json');
                     let data = JSON.parse(rawdata)["users"];
 
@@ -753,16 +731,8 @@ app.get("/admin", (req, res)=>{
 
                     res.render(__dirname + "/public/admin.ejs", {users: users, best_average: average_winner, best_progress: progress_winner, total_average: total_average, total_progress: total_progress})
 
-                }
-                else{
-                    res.send("je hebt geen toegang tot deze pagina ga weg noob")
-                }
+                } 
             }
-            else if(i == loggedIn.length - 1){
-                res.redirect('/')
-            }
-        }
-    }   
 })
 
 app.listen(process.env.PORT || port, ()=>{
