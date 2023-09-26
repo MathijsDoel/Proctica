@@ -161,7 +161,7 @@ a{
 
 #courses .course{
     width: 200px;
-    height: 350px;
+    height: 380px;
     background-color: white;
     border-radius: 30px;
     margin-left: 34px;
@@ -334,4 +334,24 @@ a{
   align-items: center;  
   font-size: 0.9em;
   
+}
+.parentlist {
+    margin-top: 0px;
+    /* margin-left: -35px; */
+}
+.knop {
+    text-decoration: none;
+    border: black 1px solid;
+    padding: 2px;
+    list-style-type: none;
+    margin-bottom: 3px;
+    border-radius: 5px;
+    margin-left: -30px;
+    width: 90%;
+    transition: 100ms;
+
+}
+
+.knop:hover {
+    background-color: rgba(205, 210, 255, 0.8);
 }
