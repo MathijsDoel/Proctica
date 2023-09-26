@@ -1,7 +1,6 @@
 const Express = require("express");
 const bodyParser = require('body-parser');
 const fs = require('fs');
-const e = require("express");
 
 
 const app = Express();
@@ -38,13 +37,14 @@ app.post('/login', (req, res) => {
     const username = req.body.username;
     const password = req.body.password;
 
-    let rawdata = fs.readFileSync('users.json');
+    let rawdata = fs.readFileSync('data/users.json');
     let data = JSON.parse(rawdata);
     let users = data["users"]
 
     for(let i = 0;i<users.length;i++){
         if(username == users[i]["username"] && password == users[i]["password"]){
             loggedIn.push({"username": username, "IP": req.socket.remoteAddress})
+            console.log('@'+username + ' just logged in from: ' + req.socket.remoteAddress)
             res.redirect("/dashboard");
             break;
         }
@@ -66,15 +66,15 @@ app.get("/dashboard", (req, res)=> {
                     res.redirect("/admin");
                 }
                 else{
-                    let rawdata = fs.readFileSync('courses-info.json');
+                    let rawdata = fs.readFileSync('data/courses-info.json');
                     let data = JSON.parse(rawdata);
                     let courses = data["courses"];
 
-                    let rawdata2 = fs.readFileSync('courses-results.json');
+                    let rawdata2 = fs.readFileSync('data/courses-results.json');
                     let temp_data2 = JSON.parse(rawdata2);
                     let temp_userdata = temp_data2["users"][user];
 
-                    let rawdata3 = fs.readFileSync('questions.json');
+                    let rawdata3 = fs.readFileSync('data/questions.json');
                     let questions = JSON.parse(rawdata3);
 
                     let grades = [];
@@ -148,7 +148,7 @@ app.get("/quiz/:course/:index", (req, res)=>{
                 let user = loggedIn[i]["username"];
                 let course = parseInt(req.params.course);
                 let index = parseInt(req.params.index);
-                let rawdata = fs.readFileSync('questions.json');
+                let rawdata = fs.readFileSync('data/questions.json');
                 let temp_data = JSON.parse(rawdata);
                 let data = temp_data["course" + course];
 
@@ -156,14 +156,14 @@ app.get("/quiz/:course/:index", (req, res)=>{
                     res.send('<h1>Deze cursus is nog niet af</h1><a href="/dashboard">Terug naar dashboard</a>');
                 }
                 else{
-                    let rawdata2 = fs.readFileSync('courses-results.json');
+                    let rawdata2 = fs.readFileSync('data/courses-results.json');
                     let temp_data2 = JSON.parse(rawdata2);
                     let temp_userdata = temp_data2["users"][user];
                     if(temp_userdata == undefined){
                         temp_data2["users"][user] = {};
                         let json_data = JSON.stringify(temp_data2, null, 2);
-                        fs.writeFileSync("courses-results.json", json_data);
-                        rawdata2 = fs.readFileSync('courses-results.json');
+                        fs.writeFileSync("data/courses-results.json", json_data);
+                        rawdata2 = fs.readFileSync('data/courses-results.json');
                         temp_data2 = JSON.parse(rawdata2);
                     }
                     let test_data = temp_data2["users"][user]["course" + course];
@@ -171,8 +171,8 @@ app.get("/quiz/:course/:index", (req, res)=>{
                     if(test_data == undefined){
                         temp_data2["users"][user]["course" + course] = {"questions": [], "complete": false, "grade": 0, "corrected": [], "info": false, "movie": false};
                         let json_data = JSON.stringify(temp_data2, null, 2);
-                        fs.writeFileSync("courses-results.json", json_data);
-                        rawdata2 = fs.readFileSync('courses-results.json');
+                        fs.writeFileSync("data/courses-results.json", json_data);
+                        rawdata2 = fs.readFileSync('data/courses-results.json');
                         temp_data2 = JSON.parse(rawdata2);
                         data2 = temp_data2["users"][user]["course" + course]["questions"];
                     }
@@ -223,7 +223,7 @@ app.post("/quiz/:course/:index", (req, res)=>{
     const value = req.body.value;
     answers.push({"question": index_str, "answer": value});
 
-    let rawdata = fs.readFileSync('courses-results.json');
+    let rawdata = fs.readFileSync('data/courses-results.json');
     let data = JSON.parse(rawdata);
     let users = data["users"];
     let user;
@@ -260,14 +260,14 @@ app.post("/quiz/:course/:index", (req, res)=>{
     }
     data["users"][user]["course" + course_index]["questions"] = course;
     let json_data = JSON.stringify(data, null, 2);
-    fs.writeFileSync("courses-results.json", json_data);
+    fs.writeFileSync("data/courses-results.json", json_data);
 
     res.redirect("/quiz/" + course_index + "/" + index);
 });
 
 app.get("/results/:index", (req, res)=>{
     let index = parseInt(req.params.index);
-    let rawdata_questions = fs.readFileSync('questions.json');
+    let rawdata_questions = fs.readFileSync('data/questions.json');
     let data_questions = JSON.parse(rawdata_questions);
     let questions = data_questions["course" + index];
     let length = questions.length;
@@ -279,7 +279,7 @@ app.get("/results/:index", (req, res)=>{
         for(let i = 0;i < loggedIn.length;i++){
             if(loggedIn[i]["IP"] == req.socket.remoteAddress){
                 user = loggedIn[i]["username"]
-                let rawdata_results = fs.readFileSync('courses-results.json');
+                let rawdata_results = fs.readFileSync('data/courses-results.json');
                 let data_results = JSON.parse(rawdata_results);
                 let users_results = data_results["users"][user]["course" + index]["questions"];
 
@@ -329,18 +329,18 @@ app.get("/movie/:index", (req, res)=>{
             if(loggedIn[i]["IP"] == req.socket.remoteAddress){
                 user = loggedIn[i]["username"]
                 let index = parseInt(req.params.index);
-                let rawdata = fs.readFileSync('courses-info.json');
+                let rawdata = fs.readFileSync('data/courses-info.json');
                 let data = JSON.parse(rawdata);
                 let courses = data["courses"];
 
-                let rawdata2 = fs.readFileSync('courses-results.json');
+                let rawdata2 = fs.readFileSync('data/courses-results.json');
                 let temp_data2 = JSON.parse(rawdata2);
                 let temp_userdata = temp_data2["users"][user];
                 if(temp_userdata == undefined){
                     temp_data2["users"][user] = {};
                     let json_data = JSON.stringify(temp_data2, null, 2);
-                    fs.writeFileSync("courses-results.json", json_data);
-                    rawdata2 = fs.readFileSync('courses-results.json');
+                    fs.writeFileSync("data/courses-results.json", json_data);
+                    rawdata2 = fs.readFileSync('data/courses-results.json');
                     temp_data2 = JSON.parse(rawdata2);
                 }
                 let test_data = temp_data2["users"][user]["course" + index];
@@ -348,8 +348,8 @@ app.get("/movie/:index", (req, res)=>{
                 if(test_data == undefined){
                     temp_data2["users"][user]["course" + index] = {"questions": [], "complete": false, "grade": 0, "corrected": [], "info": false, "movie": false};
                     let json_data = JSON.stringify(temp_data2, null, 2);
-                    fs.writeFileSync("courses-results.json", json_data);
-                    rawdata2 = fs.readFileSync('courses-results.json');
+                    fs.writeFileSync("data/courses-results.json", json_data);
+                    rawdata2 = fs.readFileSync('data/courses-results.json');
                     temp_data2 = JSON.parse(rawdata2);
                     data2 = temp_data2["users"][user]["course" + index]["questions"];
                 }
@@ -360,8 +360,8 @@ app.get("/movie/:index", (req, res)=>{
                 if(temp_data2["users"][user]["course" + index]["movie"] == false){
                     temp_data2["users"][user]["course" + index]["movie"] = true;
                     let json_data = JSON.stringify(temp_data2, null, 2);
-                    fs.writeFileSync("courses-results.json", json_data);
-                    rawdata2 = fs.readFileSync('courses-results.json');
+                    fs.writeFileSync("data/courses-results.json", json_data);
+                    rawdata2 = fs.readFileSync('data/courses-results.json');
                     temp_data2 = JSON.parse(rawdata2);
                 }
 
@@ -383,7 +383,7 @@ app.get("/movie/:index", (req, res)=>{
 
 app.get("/overview/:index", (req, res)=>{
     let index = parseInt(req.params.index);
-    let rawdata_questions = fs.readFileSync('questions.json');
+    let rawdata_questions = fs.readFileSync('data/questions.json');
     let data_questions = JSON.parse(rawdata_questions);
     let questions = data_questions["course" + index];
     let length = questions.length;
@@ -395,7 +395,7 @@ app.get("/overview/:index", (req, res)=>{
         for(let i = 0;i < loggedIn.length;i++){
             if(loggedIn[i]["IP"] == req.socket.remoteAddress){
                 user = loggedIn[i]["username"]
-                let rawdata_results = fs.readFileSync('courses-results.json');
+                let rawdata_results = fs.readFileSync('data/courses-results.json');
                 let data_results = JSON.parse(rawdata_results);
                 let users_results = data_results["users"][user]["course" + index]["questions"];
 
@@ -424,7 +424,7 @@ app.get("/overview/:index", (req, res)=>{
                 }
                 data_results["users"][user]["course" + index]["corrected"] = user_answers;
                 let json_data = JSON.stringify(data_results, null, 2);
-                fs.writeFileSync("courses-results.json", json_data);
+                fs.writeFileSync("data/courses-results.json", json_data);
                 res.render(__dirname + "/public/overview.ejs", {info: user_answers, questions: real_questions, answers: real_answers, index: index});
                 break;
             }
@@ -445,11 +445,11 @@ app.post("/overview/:index", (req, res)=>{
         for(let i = 0;i < loggedIn.length;i++){
             if(loggedIn[i]["IP"] == req.socket.remoteAddress){
                 user = loggedIn[i]["username"]
-                let rawdata_results = fs.readFileSync('courses-results.json');
+                let rawdata_results = fs.readFileSync('data/courses-results.json');
                 let data_results = JSON.parse(rawdata_results);
                 let user_answers = data_results["users"][user]["course" + index]["corrected"]
 
-                let rawdata_questions = fs.readFileSync('questions.json');
+                let rawdata_questions = fs.readFileSync('data/questions.json');
                 let data_questions = JSON.parse(rawdata_questions);
                 let questions = data_questions["course" + index];
                 let length = questions.length;
@@ -465,7 +465,7 @@ app.post("/overview/:index", (req, res)=>{
                 data_results["users"][user]["course" + index]["complete"] = true;
                 data_results["users"][user]["course" + index]["grade"] = grade;
                 let json_data = JSON.stringify(data_results, null, 2);
-                fs.writeFileSync("courses-results.json", json_data);
+                fs.writeFileSync("data/courses-results.json", json_data);
 
 
                 res.redirect("/results/"+ index)
@@ -495,18 +495,18 @@ app.get("/info/:index", (req, res)=>{
             if(loggedIn[i]["IP"] == req.socket.remoteAddress){
                 user = loggedIn[i]["username"]
                 let index = parseInt(req.params.index);
-                let rawdata = fs.readFileSync('courses-info.json');
+                let rawdata = fs.readFileSync('data/courses-info.json');
                 let data = JSON.parse(rawdata);
                 let courses = data["courses"];
 
-                let rawdata2 = fs.readFileSync('courses-results.json');
+                let rawdata2 = fs.readFileSync('data/courses-results.json');
                 let temp_data2 = JSON.parse(rawdata2);
                 let temp_userdata = temp_data2["users"][user];
                 if(temp_userdata == undefined){
                     temp_data2["users"][user] = {};
                     let json_data = JSON.stringify(temp_data2, null, 2);
-                    fs.writeFileSync("courses-results.json", json_data);
-                    rawdata2 = fs.readFileSync('courses-results.json');
+                    fs.writeFileSync("data/courses-results.json", json_data);
+                    rawdata2 = fs.readFileSync('data/courses-results.json');
                     temp_data2 = JSON.parse(rawdata2);
                 }
                 let test_data = temp_data2["users"][user]["course" + index];
@@ -514,8 +514,8 @@ app.get("/info/:index", (req, res)=>{
                 if(test_data == undefined){
                     temp_data2["users"][user]["course" + index] = {"questions": [], "complete": false, "grade": 0, "corrected": [], "info": false, "movie": false};
                     let json_data = JSON.stringify(temp_data2, null, 2);
-                    fs.writeFileSync("courses-results.json", json_data);
-                    rawdata2 = fs.readFileSync('courses-results.json');
+                    fs.writeFileSync("data/courses-results.json", json_data);
+                    rawdata2 = fs.readFileSync('data/courses-results.json');
                     temp_data2 = JSON.parse(rawdata2);
                     data2 = temp_data2["users"][user]["course" + index]["questions"];
                 }
@@ -526,8 +526,8 @@ app.get("/info/:index", (req, res)=>{
                 if(temp_data2["users"][user]["course" + index]["info"] == false){
                     temp_data2["users"][user]["course" + index]["info"] = true;
                     let json_data = JSON.stringify(temp_data2, null, 2);
-                    fs.writeFileSync("courses-results.json", json_data);
-                    rawdata2 = fs.readFileSync('courses-results.json');
+                    fs.writeFileSync("data/courses-results.json", json_data);
+                    rawdata2 = fs.readFileSync('data/courses-results.json');
                     temp_data2 = JSON.parse(rawdata2);
                 }
 
@@ -558,18 +558,18 @@ app.get("/summary/:index", (req, res) => {
             if(loggedIn[i]["IP"] == req.socket.remoteAddress){
                 user = loggedIn[i]["username"]
                 let index = parseInt(req.params.index);
-                let rawdata = fs.readFileSync('courses-info.json');
+                let rawdata = fs.readFileSync('data/courses-info.json');
                 let data = JSON.parse(rawdata);
                 let courses = data["courses"];
 
-                let rawdata2 = fs.readFileSync('courses-results.json');
+                let rawdata2 = fs.readFileSync('data/courses-results.json');
                 let temp_data2 = JSON.parse(rawdata2);
                 let temp_userdata = temp_data2["users"][user];
                 if(temp_userdata == undefined){
                     temp_data2["users"][user] = {};
                     let json_data = JSON.stringify(temp_data2, null, 2);
-                    fs.writeFileSync("courses-results.json", json_data);
-                    rawdata2 = fs.readFileSync('courses-results.json');
+                    fs.writeFileSync("data/courses-results.json", json_data);
+                    rawdata2 = fs.readFileSync('data/courses-results.json');
                     temp_data2 = JSON.parse(rawdata2);
                 }
                 let test_data = temp_data2["users"][user]["course" + index];
@@ -577,8 +577,8 @@ app.get("/summary/:index", (req, res) => {
                 if(test_data == undefined){
                     temp_data2["users"][user]["course" + index] = {"questions": [], "complete": false, "grade": 0, "corrected": [], "info": false, "movie": false};
                     let json_data = JSON.stringify(temp_data2, null, 2);
-                    fs.writeFileSync("courses-results.json", json_data);
-                    rawdata2 = fs.readFileSync('courses-results.json');
+                    fs.writeFileSync("data/courses-results.json", json_data);
+                    rawdata2 = fs.readFileSync('data/courses-results.json');
                     temp_data2 = JSON.parse(rawdata2);
                     data2 = temp_data2["users"][user]["course" + index]["questions"];
                 }
@@ -589,8 +589,8 @@ app.get("/summary/:index", (req, res) => {
                 // if(temp_data2["users"][user]["course" + index]["info"] == false){
                 //     temp_data2["users"][user]["course" + index]["info"] = true;
                 //     let json_data = JSON.stringify(temp_data2, null, 2);
-                //     fs.writeFileSync("courses-results.json", json_data);
-                //     rawdata2 = fs.readFileSync('courses-results.json');
+                //     fs.writeFileSync("data/courses-results.json", json_data);
+                //     rawdata2 = fs.readFileSync('data/courses-results.json');
                 //     temp_data2 = JSON.parse(rawdata2);
                 // }
 
@@ -620,10 +620,10 @@ app.get("/admin", (req, res)=>{
         for(let i = 0;i < loggedIn.length;i++){
             if(loggedIn[i]["IP"] == req.socket.remoteAddress){
                 if(loggedIn[i]["username"] == 'admin'){
-                    let rawdata = fs.readFileSync('courses-results.json');
+                    let rawdata = fs.readFileSync('data/courses-results.json');
                     let data = JSON.parse(rawdata)["users"];
 
-                    let rawdata2 = fs.readFileSync('courses-info.json');
+                    let rawdata2 = fs.readFileSync('data/courses-info.json');
                     let data2 = JSON.parse(rawdata2)["courses"];
 
                     let users = [];
@@ -658,11 +658,8 @@ app.get("/admin", (req, res)=>{
                         }
                         users.push({"name": user, "grades": grades, "average": average, "max": max, "finished": finished, "total": data2.length});
                     }
-                    console.log(data);
                     if(Object.keys(data).length == 0){
                         users = [{"name": '-', "grades": '-', "average": '-', "max": '-', "finished": 0, "total": data2.length}];
-                        console.log("werkt");
-                        console.log(users);
                     }
 
                     all_averages = [];

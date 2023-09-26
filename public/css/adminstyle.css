@@ -60,6 +60,7 @@ body{
 #sidebalk .title svg{
     position: relative;
     top: 50%;
+    fill: white;
     /* transform: translate(-50%, -50%); */
 }
 
